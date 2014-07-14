@@ -1,18 +1,21 @@
 {
-  "name": "strichliste",
+  "name": "strichliste-web",
   "version": "0.0.1",
-  "description": "keep track of your balance",
-  "main": "server.js",
+  "description": "web frontend for the strichliste app",
+  "main": "devServer.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha tests"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/hackerspace-bootstrap/strichliste.git"
+    "url": "git://github.com/hackerspace-bootstrap/strichliste-web.git"
   },
   "keywords": [
     "checlist",
-    "strichliste"
+    "strichliste",
+    "web",
+    "SPA",
+    "frontend"
   ],
   "author": "Manuel Ernst <zaphod84@gmx.de>",
   "contributors": [
@@ -20,7 +23,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hackerspace-bootstrap/strichliste/issues"
+    "url": "https://github.com/hackerspace-bootstrap/strichliste-web/issues"
   },
   "devDependencies": {
     "chai": "^1.9.1",
