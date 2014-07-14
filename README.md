@@ -1,4 +1,4 @@
-# strichliste, WIP
+# strichliste-web, WIP
 
 Until now the `strichliste-web` only features an empty project that features a build system.
 Included are:
