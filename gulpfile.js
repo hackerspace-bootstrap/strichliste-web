@@ -7,8 +7,8 @@ var order = require('gulp-order');
 var less = require('gulp-less');
 var sequence = require('run-sequence');
 
-var SOURCE_DIR = 'frontendSource';
-var TARGET_DIR = 'frontend';
+var SOURCE_DIR = 'src';
+var TARGET_DIR = 'build';
 
 gulp.task('clean', function (callback) {
     return gulp.src(TARGET_DIR).pipe(clean());

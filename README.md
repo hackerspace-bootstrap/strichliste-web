@@ -11,7 +11,7 @@ Included are:
 * less
 
 The buildsystem will concatenate script library files with compiled commonJS modules (browserify), compile less and concatenate it with library style files, copy images and static template resources.
-The output folder is `./frontend` whereas development is done in `./frontendSource`.
+The output folder is `./build` whereas development is done in `./src`.
 
 ## installation
 
