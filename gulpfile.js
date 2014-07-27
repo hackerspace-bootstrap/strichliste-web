@@ -8,9 +8,12 @@ var less = require('gulp-less');
 var sequence = require('run-sequence');
 var ngannotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
+var gulpIf = require('gulp-if');
 
 var SOURCE_DIR = 'src';
 var TARGET_DIR = 'build';
+
+var ENV = process.env.NODE_ENV;
 
 gulp.task('clean', function (callback) {
     return gulp
@@ -59,7 +62,7 @@ gulp.task('scripts_ext', function () {
             'bootstrap.js'
         ]))
         .pipe(concat('external.js'))
-        .pipe(uglify())
+        .pipe(gulpIf(ENV === 'production', uglify()))
         .pipe(gulp.dest(TARGET_DIR));
 });
 
@@ -68,7 +71,7 @@ gulp.task('scripts_app', function () {
         .src(SOURCE_DIR + '/script/app.js')
         .pipe(browserify())
         .pipe(ngannotate())
-        .pipe(uglify())
+        .pipe(gulpIf(ENV === 'production', uglify()))
         .pipe(gulp.dest(TARGET_DIR));
 });
 
@@ -77,6 +80,8 @@ gulp.task('build', function(callback) {
 });
 
 gulp.task('dev', function(callback) {
+    ENV = 'development';
+
     sequence('clean', ['html', 'images', 'style_ext', 'style_app', 'scripts_ext', 'scripts_app'], function() {
         gulp.watch(SOURCE_DIR + '/**/*.html', ['html']);
         gulp.watch(SOURCE_DIR + '/style/**/*.less', ['style_app']);
