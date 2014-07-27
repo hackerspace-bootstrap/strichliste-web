@@ -1,17 +1,19 @@
 <!doctype html>
 
-<html>
+<html ng-app="strichliste">
 <head>
     <meta charset="utf-8">
     <title>strichliste</title>
 
+    <link href="external.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Strichliste</h1>
+<body ng-controller="FooController">
+    <h1>{{title}}</h1>
 
-    <img src="img/cat.jpg">
+    <img ng-src="{{catPath}}">
 
-    <script src="script.js" type="text/javascript"></script>
+    <script src="external.js" type="text/javascript"></script>
+    <script src="app.js" type="text/javascript"></script>
 </body>
 </html>

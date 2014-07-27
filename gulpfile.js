@@ -11,65 +11,71 @@ var SOURCE_DIR = 'src';
 var TARGET_DIR = 'build';
 
 gulp.task('clean', function (callback) {
-    return gulp.src(TARGET_DIR).pipe(clean());
+    return gulp
+        .src(TARGET_DIR)
+        .pipe(clean());
 });
 
-gulp.task('style', function () {
-    var lessStream = gulp.src(SOURCE_DIR + '/style/*.less')
-        .pipe(less());
-
-    var extStream = gulp.src(SOURCE_DIR + '/style/ext/*.css')
+gulp.task('style_ext', function () {
+    return gulp
+        .src(SOURCE_DIR + '/style/ext/*.css')
         .pipe(order([
             'normalize-*',
             'bootstrap.css',
             'bootstrap-responsive.css'
         ]))
-        .pipe(concat('bert.css'));
+        .pipe(concat('external.css'))
+        .pipe(gulp.dest(TARGET_DIR));
+});
 
-    //I'm quite sure there's a better solution than this, but for now this will do
-    return merge(extStream, lessStream)
-        .pipe(concat('style.css'))
+gulp.task('style_app', function () {
+    return gulp
+        .src(SOURCE_DIR + '/style/*.less')
+        .pipe(less())
         .pipe(gulp.dest(TARGET_DIR));
 });
 
 gulp.task('images', function () {
-    return gulp.src(SOURCE_DIR + '/img/*').pipe(gulp.dest(TARGET_DIR + '/img'));
+    return gulp
+        .src(SOURCE_DIR + '/img/*')
+        .pipe(gulp.dest(TARGET_DIR + '/img'));
 });
 
 gulp.task('html', function () {
-    return gulp.src(SOURCE_DIR + '/**/*.html').pipe(gulp.dest(TARGET_DIR));
+    return gulp
+        .src(SOURCE_DIR + '/**/*.html')
+        .pipe(gulp.dest(TARGET_DIR));
 });
 
-gulp.task('scripts', function () {
-    var browserifyStream = gulp.src(SOURCE_DIR + '/script/app.js')
-        .pipe(browserify());
-
-    //I'm quite sure there's a better solution than this, but for now this will do
-    var extStream = gulp.src(SOURCE_DIR + '/script/ext/*')
+gulp.task('scripts_ext', function () {
+    return gulp
+        .src(SOURCE_DIR + '/script/ext/*')
         .pipe(order([
             'jquery-*.js',
             'angular.js',
             'angular-translate.js',
             'bootstrap.js'
         ]))
-        .pipe(concat('bert.js'));
+        .pipe(concat('external.js'))
+        .pipe(gulp.dest(TARGET_DIR));
+});
 
-    return merge(extStream, browserifyStream)
-        .pipe(concat('script.js'))
-        //add uglify
+gulp.task('scripts_app', function () {
+    return gulp
+        .src(SOURCE_DIR + '/script/app.js')
+        .pipe(browserify())
         .pipe(gulp.dest(TARGET_DIR));
 });
 
 gulp.task('build', function(callback) {
-    sequence('clean', ['html', 'images', 'style', 'scripts'], callback);
+    sequence('clean', ['html', 'images', 'style_app', 'style_ext', 'scripts_ext', 'scripts_app'], callback);
 });
 
 gulp.task('dev', function(callback) {
-    //currently the whole buildprocess runs when something changes, in the future we can do this a little bit more granular, e.g. only rebuilding scripts, css, etc....
-    sequence('clean', ['html', 'images', 'style', 'scripts'], function() {
+    sequence('clean', ['html', 'images', 'style_ext', 'style_app', 'scripts_ext', 'scripts_app'], function() {
         gulp.watch(SOURCE_DIR + '/**/*.html', ['html']);
-        gulp.watch(SOURCE_DIR + '/**/*.less', ['style']);
-        gulp.watch(SOURCE_DIR + '/script/**/*', ['scripts']);
+        gulp.watch(SOURCE_DIR + '/style/**/*.less', ['style_app']);
+        gulp.watch(SOURCE_DIR + '/script/**/*.js', ['scripts_app']);
         gulp.watch(SOURCE_DIR + '/img/**/*', ['images']);
 
         callback();
