@@ -30,6 +30,12 @@ $ npm install
 $ ./node_modules/.bin/gulp build
 ````
 
+To create a production build where sources are minified set the environment to `production`:
+
+````bash
+$ NODE_ENV=production ./node_modules/.bin/gulp build
+````
+
 ### development mode
 When in development the following command will as well initiate the build process as well as creating a watch on the relevant folders.
 The build process will then be run again when certain file has been changed.
