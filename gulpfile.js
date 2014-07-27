@@ -6,6 +6,8 @@ var merge = require('merge-stream');
 var order = require('gulp-order');
 var less = require('gulp-less');
 var sequence = require('run-sequence');
+var ngannotate = require('gulp-ng-annotate');
+var uglify = require('gulp-uglify');
 
 var SOURCE_DIR = 'src';
 var TARGET_DIR = 'build';
@@ -57,6 +59,7 @@ gulp.task('scripts_ext', function () {
             'bootstrap.js'
         ]))
         .pipe(concat('external.js'))
+        .pipe(uglify())
         .pipe(gulp.dest(TARGET_DIR));
 });
 
@@ -64,6 +67,8 @@ gulp.task('scripts_app', function () {
     return gulp
         .src(SOURCE_DIR + '/script/app.js')
         .pipe(browserify())
+        .pipe(ngannotate())
+        .pipe(uglify())
         .pipe(gulp.dest(TARGET_DIR));
 });
 
