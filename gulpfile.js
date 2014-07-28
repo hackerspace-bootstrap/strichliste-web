@@ -8,12 +8,17 @@ var less = require('gulp-less');
 var sequence = require('run-sequence');
 var ngannotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
+var cssmin = require('gulp-minify-css');
 var gulpIf = require('gulp-if');
 
 var SOURCE_DIR = 'src';
 var TARGET_DIR = 'build';
 
 var ENV = process.env.NODE_ENV;
+
+function isProduction() {
+    return ENV === 'production';
+}
 
 gulp.task('clean', function (callback) {
     return gulp
@@ -29,6 +34,7 @@ gulp.task('style_ext', function () {
             'bootstrap.css',
             'bootstrap-responsive.css'
         ]))
+        .pipe(gulpIf(isProduction, cssmin()))
         .pipe(concat('external.css'))
         .pipe(gulp.dest(TARGET_DIR));
 });
@@ -37,6 +43,7 @@ gulp.task('style_app', function () {
     return gulp
         .src(SOURCE_DIR + '/style/*.less')
         .pipe(less())
+        .pipe(gulpIf(isProduction, cssmin()))
         .pipe(gulp.dest(TARGET_DIR));
 });
 
@@ -62,7 +69,7 @@ gulp.task('scripts_ext', function () {
             'bootstrap.js'
         ]))
         .pipe(concat('external.js'))
-        .pipe(gulpIf(ENV === 'production', uglify()))
+        .pipe(gulpIf(isProduction, uglify()))
         .pipe(gulp.dest(TARGET_DIR));
 });
 
@@ -71,7 +78,7 @@ gulp.task('scripts_app', function () {
         .src(SOURCE_DIR + '/script/app.js')
         .pipe(browserify())
         .pipe(ngannotate())
-        .pipe(gulpIf(ENV === 'production', uglify()))
+        .pipe(gulpIf(isProduction, uglify()))
         .pipe(gulp.dest(TARGET_DIR));
 });
 
