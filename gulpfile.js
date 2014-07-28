@@ -32,9 +32,10 @@ gulp.task('style_ext', function () {
     return gulp
         .src(SOURCE_DIR + '/style/ext/*.css')
         .pipe(order([
-            'normalize-*',
-            'bootstrap.css',
-            'bootstrap-responsive.css'
+        //    'normalize-*',
+         //   'bootstrap.css',
+            //'bootstrap-responsive.css',
+            'bootstrap-theme.min.css'
         ]))
         .pipe(concat('external.css'))
         .pipe(gulpIf(isProduction, cssmin()))

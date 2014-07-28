@@ -1,0 +1,54 @@
+<div class="user">
+    <div class="col-md-12">
+        <h2>User „{{user.name}}”</h2>
+        <div class="amount" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance}} €</div>
+    </div>
+
+    <div class="col-md-6 credit">
+        <h3>add funds</h3>
+        <button class="btn btn-success btn-lg">+ 0,50 €</button>
+        <button class="btn btn-success btn-lg">+ 1,00 €</button>
+        <button class="btn btn-success btn-lg">+ 1,50 €</button>
+        <button class="btn btn-success btn-lg">+ 5,00 €</button>
+        <button class="btn btn-success btn-lg">+ 10,00 €</button>
+
+        <h3>pay the dues</h3>
+        <button class="btn btn-primary btn-lg">+ 0,30 €</button>
+        <button class="btn btn-primary btn-lg">+ 0,50 €</button>
+        <button class="btn btn-primary btn-lg">+ 1,00 €</button>
+        <button class="btn btn-primary btn-lg">+ 1,50 €</button>
+        <button class="btn btn-primary btn-lg">+ 2,00 €</button>
+    </div>
+
+    <div class="col-md-6">
+        <h3>transactions</h3>
+        <table class="table table-striped">
+            <!--
+            <thead>
+                <tr>
+                    <th>date</th>
+                    <th>value</th>
+                </tr>
+            </thead>
+            -->
+            <tbody>
+                <tr>
+                    <td>2014-07-28 21:51:00</td>
+                    <td>-1,50 €</td>
+                </tr>
+                <tr>
+                    <td>2014-07-28 20:51:00</td>
+                    <td>-1,00 €</td>
+                </tr>
+                <tr>
+                    <td>2014-07-28 19:51:00</td>
+                    <td>+5,00 €</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-12">
+        <button class="btn btn-default btn-lg back" ng-click="backClick()">back</button>
+    </div>
+</div>

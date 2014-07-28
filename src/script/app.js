@@ -1,7 +1,36 @@
 var angular = require('./lib/angular');
 
-var fooController = require('./lib/fooController');
+var indexController = require('./lib/controller/index');
+var userController = require('./lib/controller/user');
+var createUserController = require('./lib/controller/createUser');
 
-var app = angular.module('strichliste', []);
+var userService = require('./lib/services/user');
+var locationService = require('./lib/services/location');
 
-fooController.install(app);
+var app = angular.module('strichliste', ['ngRoute'])
+   .config(function ($routeProvider) {
+
+       $routeProvider
+           .when('/', {
+               templateUrl: 'partials/index.html',
+               controller: 'IndexController'
+           })
+           .when('/user/:name', {
+               templateUrl: 'partials/user.html',
+               controller: 'UserController'
+           })
+           .when('/createUser', {
+               templateUrl: 'partials/createUser.html',
+               controller: 'CreateUserController'
+           })
+           .otherwise({
+               redirectTo: '/'
+           });
+   });
+
+indexController.install(app);
+userController.install(app);
+createUserController.install(app);
+
+userService.install(app);
+locationService.install(app);
