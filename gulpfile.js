@@ -10,6 +10,7 @@ var ngannotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 var cssmin = require('gulp-minify-css');
 var gulpIf = require('gulp-if');
+var gutil = require('gulp-util');
 
 var SOURCE_DIR = 'src';
 var TARGET_DIR = 'build';
@@ -42,7 +43,7 @@ gulp.task('style_ext', function () {
 gulp.task('style_app', function () {
     return gulp
         .src(SOURCE_DIR + '/style/*.less')
-        .pipe(less())
+        .pipe(less()).on('error', gutil.log)
         .pipe(gulpIf(isProduction, cssmin()))
         .pipe(gulp.dest(TARGET_DIR));
 });
@@ -76,7 +77,7 @@ gulp.task('scripts_ext', function () {
 gulp.task('scripts_app', function () {
     return gulp
         .src(SOURCE_DIR + '/script/app.js')
-        .pipe(browserify())
+        .pipe(browserify()).on('error', gutil.log)
         .pipe(ngannotate())
         .pipe(gulpIf(isProduction, uglify()))
         .pipe(gulp.dest(TARGET_DIR));
