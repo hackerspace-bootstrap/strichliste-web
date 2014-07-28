@@ -11,6 +11,7 @@ var uglify = require('gulp-uglify');
 var cssmin = require('gulp-minify-css');
 var gulpIf = require('gulp-if');
 var gutil = require('gulp-util');
+var htmlMin = require('gulp-minify-html');
 
 var SOURCE_DIR = 'src';
 var TARGET_DIR = 'build';
@@ -35,8 +36,8 @@ gulp.task('style_ext', function () {
             'bootstrap.css',
             'bootstrap-responsive.css'
         ]))
-        .pipe(gulpIf(isProduction, cssmin()))
         .pipe(concat('external.css'))
+        .pipe(gulpIf(isProduction, cssmin()))
         .pipe(gulp.dest(TARGET_DIR));
 });
 
@@ -57,6 +58,7 @@ gulp.task('images', function () {
 gulp.task('html', function () {
     return gulp
         .src(SOURCE_DIR + '/**/*.html')
+        .pipe(gulpIf(isProduction, htmlMin()))
         .pipe(gulp.dest(TARGET_DIR));
 });
 
