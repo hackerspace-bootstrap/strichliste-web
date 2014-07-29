@@ -1,20 +1,17 @@
 var util = require('util');
 
 var angular = require('../../lib/angular');
+var settings = require('../settings');
 
 function TransactionService($http) {
 
     this.getTransactionByUserId = function(user_id) {
-        return $http.get('http://rose:8080/user/' + user_id + '/transaction');
+        return $http.get(settings.server + '/user/' + user_id + '/transaction');
     };
 
-    this.getUser = function(name) {
-        return $http.get('http://rose:8080/user/' + encodeURIComponent(name));
-    };
-
-    this.addUser = function(name) {
-        return $http.put('http://rose:8080/user', {
-            name: name
+    this.createTransaction = function(user_id, value) {
+        return $http.put(settings.server + '/user/' + user_id + '/transaction', {
+            value: value
         });
     };
 }

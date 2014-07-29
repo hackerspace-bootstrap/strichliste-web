@@ -1,15 +1,15 @@
 <div class="user">
     <div class="col-md-12">
         <h2>User „{{user.name}}”</h2>
-        <div class="amount" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance}} €</div>
+        <div class="amount" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance|number:2}} €</div>
     </div>
 
     <div class="col-md-6 credit">
         <h3>add funds</h3>
-        <button class="btn btn-success btn-lg" ng-repeat="step in depositSteps">+ {{step|number:2}} €</button>
+        <button class="btn btn-success btn-lg" ng-click="transactionClick(step)" ng-repeat="step in depositSteps">+ {{step|number:2}} €</button>
 
         <h3>pay the dues</h3>
-        <button class="btn btn-primary btn-lg" ng-repeat="step in dispenseSteps">- {{step|number:2}} €</button>
+        <button class="btn btn-primary btn-lg" ng-click="transactionClick(step*-1)" ng-repeat="step in dispenseSteps">- {{step|number:2}} €</button>
     </div>
 
     <div class="col-md-6">

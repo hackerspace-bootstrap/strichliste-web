@@ -6,6 +6,7 @@ var createUserController = require('./lib/controller/createUser');
 
 var userService = require('./lib/services/user');
 var locationService = require('./lib/services/location');
+var transactionService = require('./lib/services/transaction');
 
 var app = angular.module('strichliste', ['ngRoute'])
    .config(function ($routeProvider) {
@@ -15,7 +16,7 @@ var app = angular.module('strichliste', ['ngRoute'])
                templateUrl: 'partials/index.html',
                controller: 'IndexController'
            })
-           .when('/user/:name', {
+           .when('/user/:user_id', {
                templateUrl: 'partials/user.html',
                controller: 'UserController'
            })
@@ -34,3 +35,4 @@ createUserController.install(app);
 
 userService.install(app);
 locationService.install(app);
+transactionService.install(app);
