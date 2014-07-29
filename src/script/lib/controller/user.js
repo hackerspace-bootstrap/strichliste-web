@@ -8,7 +8,14 @@ module.exports.install = function(app) {
         };
 
         $scope.transactionClick = function(value) {
-            transactionService.createTransaction($routeParams.user_id, value);
+            transactionService
+                .createTransaction($routeParams.user_id, value)
+                .success(function() {
+                    // Reload stuff?
+                })
+                .error(function(response) {
+                    alert(response.message);
+                });
         };
 
         $scope.depositSteps = settings.paymentSteps.deposit;
@@ -19,8 +26,8 @@ module.exports.install = function(app) {
             .success(function(user) {
                 $scope.user = user;
             })
-            .error(function() {
-                alert("Something went wrong");
+            .error(function(response) {
+                alert(response.message);
             });
 
     });
