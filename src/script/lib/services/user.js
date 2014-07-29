@@ -13,7 +13,7 @@ function UserService($http) {
     };
 
     this.createUser = function(name) {
-        return $http.put('http://rose:8080/user', JSON.stringify({name: name }));
+        return $http.put('http://rose:8080/user', {name: name});
     };
 }
 
