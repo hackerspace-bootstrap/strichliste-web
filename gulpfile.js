@@ -12,6 +12,7 @@ var cssmin = require('gulp-minify-css');
 var gulpIf = require('gulp-if');
 var gutil = require('gulp-util');
 var htmlMin = require('gulp-minify-html');
+var colorguard = require('gulp-colorguard');
 
 var SOURCE_DIR = 'src';
 var TARGET_DIR = 'build';
@@ -46,6 +47,7 @@ gulp.task('style_app', function () {
     return gulp
         .src(SOURCE_DIR + '/style/*.less')
         .pipe(less()).on('error', gutil.log)
+        .pipe(colorguard())
         .pipe(gulpIf(isProduction, cssmin()))
         .pipe(gulp.dest(TARGET_DIR));
 });
