@@ -6,18 +6,10 @@
 
     <div class="col-md-6 credit">
         <h3>add funds</h3>
-        <button class="btn btn-success btn-lg">+ 0,50 €</button>
-        <button class="btn btn-success btn-lg">+ 1,00 €</button>
-        <button class="btn btn-success btn-lg">+ 1,50 €</button>
-        <button class="btn btn-success btn-lg">+ 5,00 €</button>
-        <button class="btn btn-success btn-lg">+ 10,00 €</button>
+        <button class="btn btn-success btn-lg" ng-repeat="step in depositSteps">+ {{step|number:2}} €</button>
 
         <h3>pay the dues</h3>
-        <button class="btn btn-primary btn-lg">+ 0,30 €</button>
-        <button class="btn btn-primary btn-lg">+ 0,50 €</button>
-        <button class="btn btn-primary btn-lg">+ 1,00 €</button>
-        <button class="btn btn-primary btn-lg">+ 1,50 €</button>
-        <button class="btn btn-primary btn-lg">+ 2,00 €</button>
+        <button class="btn btn-primary btn-lg" ng-repeat="step in dispenseSteps">- {{step|number:2}} €</button>
     </div>
 
     <div class="col-md-6">
