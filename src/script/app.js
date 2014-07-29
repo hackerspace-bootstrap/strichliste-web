@@ -5,7 +5,6 @@ var userController = require('./lib/controller/user');
 var createUserController = require('./lib/controller/createUser');
 
 var userService = require('./lib/services/user');
-var shopService = require('./lib/services/shop');
 var locationService = require('./lib/services/location');
 
 var app = angular.module('strichliste', ['ngRoute'])
@@ -34,5 +33,4 @@ userController.install(app);
 createUserController.install(app);
 
 userService.install(app);
-shopService.install(app);
 locationService.install(app);
