@@ -1,7 +1,7 @@
 <ul class="user-list col-md-12">
     <li ng-repeat="user in users" ng-click="userClick(user.id)" class="col-md-2 panel panel-default" title="{{user.name}}">
         <div class="name">{{user.name}}</div>
-        <div class="balance">{{user.balance}} €</div>
+        <div class="balance">{{user.balance|number:2}} €</div>
     </li>
     <li class="col-md-2 panel panel-default create-user" ng-click="createUserClick()">+</li>
 </ul>
