@@ -15,26 +15,10 @@
     <div class="col-md-6">
         <h3>transactions</h3>
         <table class="table table-striped">
-            <!--
-            <thead>
-                <tr>
-                    <th>date</th>
-                    <th>value</th>
-                </tr>
-            </thead>
-            -->
             <tbody>
-                <tr>
-                    <td>2014-07-28 21:51:00</td>
-                    <td>-1,50 €</td>
-                </tr>
-                <tr>
-                    <td>2014-07-28 20:51:00</td>
-                    <td>-1,00 €</td>
-                </tr>
-                <tr>
-                    <td>2014-07-28 19:51:00</td>
-                    <td>+5,00 €</td>
+                <tr ng-repeat="transaction in transactions | orderBy:'-id' | limitTo : 5">
+                    <td>{{transaction.createDate}}</td>
+                    <td>{{transaction.value|number:2}} €</td>
                 </tr>
             </tbody>
         </table>

@@ -7,11 +7,35 @@ module.exports.install = function(app) {
             locationService.gotoHome();
         };
 
+        function loadUser() {
+            userService
+                .getUser($routeParams.user_id)
+                .success(function(user) {
+                    $scope.user = user;
+                })
+                .error(function(response) {
+                    alert(response.message);
+                });
+        }
+
+        function loadTransactions() {
+            transactionService
+                .getTransactionByUserId($routeParams.user_id)
+                .success(function(transactions) {
+                    $scope.transactions = transactions;
+                })
+                .error(function(response) {
+                    alert(response.message);
+                });
+        }
+
         $scope.transactionClick = function(value) {
             transactionService
                 .createTransaction($routeParams.user_id, value)
                 .success(function() {
-                    // Reload stuff?
+                    console.log("Yippi");
+                    loadUser();
+                    loadTransactions();
                 })
                 .error(function(response) {
                     alert(response.message);
@@ -21,14 +45,9 @@ module.exports.install = function(app) {
         $scope.depositSteps = settings.paymentSteps.deposit;
         $scope.dispenseSteps = settings.paymentSteps.dispense;
 
-        userService
-            .getUser($routeParams.user_id)
-            .success(function(user) {
-                $scope.user = user;
-            })
-            .error(function(response) {
-                alert(response.message);
-            });
+
+        loadUser();
+        loadTransactions();
 
     });
 };
