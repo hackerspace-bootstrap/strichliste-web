@@ -3,9 +3,6 @@ var settings = require('../settings');
 module.exports.install = function(app) {
     app.controller('UserController', function ($scope, $routeParams, locationService, transactionService, userService) {
 
-        $scope.backClick = function() {
-            locationService.gotoHome();
-        };
 
         function loadUser() {
             userService
@@ -29,11 +26,14 @@ module.exports.install = function(app) {
                 });
         }
 
+        $scope.backClick = function() {
+            locationService.gotoHome();
+        };
+
         $scope.transactionClick = function(value) {
             transactionService
                 .createTransaction($routeParams.user_id, value)
                 .success(function() {
-                    console.log("Yippi");
                     loadUser();
                     loadTransactions();
                 })
