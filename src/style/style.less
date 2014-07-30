@@ -28,12 +28,13 @@
 
     cursor: pointer;
 
-    .name, .balance {
-      margin-top: 16px;
+    .balance {
+      margin-top: 10px;
     }
 
     .name {
       width: 130px;
+      margin-top: 16px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -56,19 +57,20 @@ button.back {
   width: 100%;
 }
 
+.balance.negative {
+  color: #d9230f;
+}
+
 .user {
   position: relative;
 
-  .amount {
+  .balance {
     position: absolute;
     top: -4px;
     right: 13px;
 
     font-size: 72px;
 
-    &.negative {
-      color: #d9230f;
-    }
   }
 
   .credit {
