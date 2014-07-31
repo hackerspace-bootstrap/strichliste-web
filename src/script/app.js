@@ -8,7 +8,7 @@ var userService = require('./lib/services/user');
 var locationService = require('./lib/services/location');
 var transactionService = require('./lib/services/transaction');
 
-var app = angular.module('strichliste', ['ngRoute'])
+var app = angular.module('strichliste', ['ngRoute', 'ngIdle'])
    .config(function ($routeProvider) {
 
        $routeProvider
@@ -27,7 +27,12 @@ var app = angular.module('strichliste', ['ngRoute'])
            .otherwise({
                redirectTo: '/'
            });
-   });
+   })
+    .config(function ($idleProvider, $keepaliveProvider) {
+        $idleProvider.idleDuration(30); // in seconds
+        $idleProvider.warningDuration(0); // in seconds
+        $keepaliveProvider.interval(2); // in seconds
+    });
 
 indexController.install(app);
 userController.install(app);

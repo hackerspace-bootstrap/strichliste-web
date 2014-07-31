@@ -72,6 +72,7 @@ gulp.task('scripts_ext', function () {
             'jquery-*.js',
             'angular.js',
             'angular-translate.js',
+            'angular-idle.js',
             'bootstrap.js'
         ]))
         .pipe(concat('external.js'))

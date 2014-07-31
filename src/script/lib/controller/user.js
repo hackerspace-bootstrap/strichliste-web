@@ -1,7 +1,7 @@
 var settings = require('../settings');
 
 module.exports.install = function(app) {
-    app.controller('UserController', function ($scope, $routeParams, locationService, transactionService, userService) {
+    app.controller('UserController', function ($scope, $routeParams, $idle, locationService, transactionService, userService) {
 
 
         function loadUser() {
@@ -25,6 +25,12 @@ module.exports.install = function(app) {
                     alert(response.message);
                 });
         }
+
+        $idle.watch();
+
+        $scope.$on('$idleTimeout', function() {
+            locationService.gotoHome();
+        });
 
         $scope.backClick = function() {
             locationService.gotoHome();
