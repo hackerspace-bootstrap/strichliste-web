@@ -10,7 +10,7 @@ function TransactionService($http) {
     };
 
     this.createTransaction = function(user_id, value) {
-        return $http.put(settings.server + '/user/' + user_id + '/transaction', {
+        return $http.post(settings.server + '/user/' + user_id + '/transaction', {
             value: value
         });
     };

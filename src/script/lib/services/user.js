@@ -14,7 +14,7 @@ function UserService($http) {
     };
 
     this.createUser = function(name) {
-        return $http.put(settings.server + '/user', {name: name});
+        return $http.post(settings.server + '/user', {name: name});
     };
 }
 
