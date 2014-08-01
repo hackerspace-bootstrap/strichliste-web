@@ -1,6 +1,8 @@
 module.exports.install = function(app) {
     app.controller('CreateUserController', function ($scope, locationService, userService) {
 
+        $scope.name.focus();
+
         $scope.createUser = function() {
             userService
                 .createUser($scope.name)
