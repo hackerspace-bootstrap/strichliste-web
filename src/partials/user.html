@@ -6,10 +6,10 @@
 
     <div class="col-xs-6 credit">
         <h3>add funds</h3>
-        <button class="btn btn-success btn-lg" ng-click="transactionClick(step)" ng-repeat="step in depositSteps">+ {{step|number:2}} €</button>
+        <button class="btn btn-success btn-lg" ng-click="transactionClick(step)" ng-repeat="step in depositSteps">+{{step|number:2}} €</button>
 
         <h3>pay the dues</h3>
-        <button class="btn btn-primary btn-lg" ng-click="transactionClick(step*-1)" ng-repeat="step in dispenseSteps">- {{step|number:2}} €</button>
+        <button class="btn btn-primary btn-lg" ng-click="transactionClick(step*-1)" ng-repeat="step in dispenseSteps">-{{step|number:2}} €</button>
     </div>
 
     <div class="col-xs-6">
