@@ -29,6 +29,13 @@ gulp.task('clean', function (callback) {
         .pipe(clean());
 });
 
+gulp.task('static', function () {
+    return gulp
+        .src(SOURCE_DIR + '/static/*')
+        .pipe(gulp.dest(TARGET_DIR));
+});
+
+
 gulp.task('style_ext', function () {
     return gulp
         .src(SOURCE_DIR + '/style/ext/*.css')
@@ -40,7 +47,7 @@ gulp.task('style_ext', function () {
         ]))
         .pipe(concat('external.css'))
         .pipe(gulpIf(isProduction, cssmin()))
-        .pipe(gulp.dest(TARGET_DIR));
+        .pipe(gulp.dest(TARGET_DIR + '/css'));
 });
 
 gulp.task('style_app', function () {
@@ -49,7 +56,7 @@ gulp.task('style_app', function () {
         .pipe(less()).on('error', gutil.log)
         .pipe(colorguard())
         .pipe(gulpIf(isProduction, cssmin()))
-        .pipe(gulp.dest(TARGET_DIR));
+        .pipe(gulp.dest(TARGET_DIR + '/css'));
 });
 
 gulp.task('images', function () {
@@ -77,7 +84,7 @@ gulp.task('scripts_ext', function () {
         ]))
         .pipe(concat('external.js'))
         .pipe(gulpIf(isProduction, uglify()))
-        .pipe(gulp.dest(TARGET_DIR));
+        .pipe(gulp.dest(TARGET_DIR + '/js'));
 });
 
 gulp.task('scripts_app', function () {
@@ -86,17 +93,17 @@ gulp.task('scripts_app', function () {
         .pipe(browserify()).on('error', gutil.log)
         .pipe(ngannotate())
         .pipe(gulpIf(isProduction, uglify()))
-        .pipe(gulp.dest(TARGET_DIR));
+        .pipe(gulp.dest(TARGET_DIR + '/js'));
 });
 
 gulp.task('build', function(callback) {
-    sequence('clean', ['html', 'images', 'style_app', 'style_ext', 'scripts_ext', 'scripts_app'], callback);
+    sequence('clean', ['html', 'static', 'images', 'style_app', 'style_ext', 'scripts_ext', 'scripts_app'], callback);
 });
 
 gulp.task('dev', function(callback) {
     ENV = 'development';
 
-    sequence('clean', ['html', 'images', 'style_ext', 'style_app', 'scripts_ext', 'scripts_app'], function() {
+    sequence('clean', ['html', 'static', 'images', 'style_ext', 'style_app', 'scripts_ext', 'scripts_app'], function() {
         gulp.watch(SOURCE_DIR + '/**/*.html', ['html']);
         gulp.watch(SOURCE_DIR + '/style/**/*.less', ['style_app']);
         gulp.watch(SOURCE_DIR + '/script/**/*.js', ['scripts_app']);
