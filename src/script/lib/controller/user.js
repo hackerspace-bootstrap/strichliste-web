@@ -15,17 +15,6 @@ module.exports.install = function(app) {
                 });
         }
 
-        function loadTransactions() {
-            transactionService
-                .getTransactionByUserId($routeParams.user_id)
-                .success(function(transactions) {
-                    $scope.transactions = transactions;
-                })
-                .error(function(response) {
-                    alert(response.message);
-                });
-        }
-
         $idle.watch();
 
         $scope.$on('$idleTimeout', function() {
@@ -41,7 +30,6 @@ module.exports.install = function(app) {
                 .createTransaction($routeParams.user_id, value)
                 .success(function() {
                     loadUser();
-                    loadTransactions();
                 })
                 .error(function(response) {
                     alert(response.message);
@@ -53,7 +41,5 @@ module.exports.install = function(app) {
 
 
         loadUser();
-        loadTransactions();
-
     });
 };

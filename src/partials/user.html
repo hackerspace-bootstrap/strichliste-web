@@ -16,7 +16,7 @@
         <h3>transactions</h3>
         <table class="table table-striped">
             <tbody>
-                <tr ng-repeat="transaction in transactions | orderBy:'-id' | limitTo : 5">
+                <tr ng-repeat="transaction in user.transactions | orderBy:'-id' | limitTo : 5">
                     <td>{{transaction.createDate}}</td>
                     <td>{{transaction.value|number:2}} €</td>
                 </tr>
