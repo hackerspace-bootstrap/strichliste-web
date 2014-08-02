@@ -30,11 +30,11 @@ var app = angular.module('strichliste', ['ngRoute', 'ngIdle'])
                redirectTo: '/'
            });
    })
-    .config(function ($idleProvider, $keepaliveProvider) {
-        $idleProvider.idleDuration(settings.idleTimeout); // in seconds
-        $idleProvider.warningDuration(0); // in seconds
-        $keepaliveProvider.interval(2); // in seconds
-    });
+   .config(function ($idleProvider, $keepaliveProvider) {
+       $idleProvider.idleDuration(settings.idleTimeout); // in seconds
+       $idleProvider.warningDuration(0); // in seconds
+       $keepaliveProvider.interval(2); // in seconds
+   });
 
 indexController.install(app);
 userController.install(app);
