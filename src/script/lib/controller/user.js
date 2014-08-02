@@ -1,7 +1,7 @@
 var settings = require('../settings');
 
 module.exports.install = function(app) {
-    app.controller('UserController', function ($scope, $routeParams, $idle, ngAudio, locationService, transactionService, userService) {
+    app.controller('UserController', function ($scope, $routeParams, $idle, locationService, transactionService, userService) {
 
 
         function loadUser() {
@@ -26,7 +26,10 @@ module.exports.install = function(app) {
         };
 
         $scope.transactionClick = function(value) {
-            angular.element('#payment')[0].play();
+
+            if(settings.audio.transaction) {
+                angular.element('#transactionAudioElement')[0].play();
+            }
 
             transactionService
                 .createTransaction($routeParams.user_id, value)
@@ -40,6 +43,7 @@ module.exports.install = function(app) {
 
         $scope.depositSteps = settings.paymentSteps.deposit;
         $scope.dispenseSteps = settings.paymentSteps.dispense;
+        $scope.audio = settings.audio;
 
 
         loadUser();

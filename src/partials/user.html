@@ -28,5 +28,7 @@
         <button class="btn btn-default btn-lg back" ng-click="backClick()">back</button>
     </div>
 
-    <audio id="payment" src="cash-register.ogg"></audio>
+    <div ng-if="audio.transaction">
+        <audio id="transactionAudioElement" src="{{audio.transaction}}"></audio>
+    </div>
 </div>
