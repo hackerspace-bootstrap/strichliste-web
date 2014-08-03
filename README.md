@@ -17,7 +17,7 @@ The output folder is `./build` whereas development is done in `./src`.
 
 ### clone repository
 ````bash
-$ git clone git@github.com:hackerspace-bootstrap/strichliste.git
+$ git clone git@github.com:hackerspace-bootstrap/strichliste-web.git
 ````
 
 ### install dependencies
