@@ -13,11 +13,28 @@ var gulpIf = require('gulp-if');
 var gutil = require('gulp-util');
 var htmlMin = require('gulp-minify-html');
 var colorguard = require('gulp-colorguard');
+var bower = require('gulp-bower');
+var gulpFilter = require('gulp-filter');
 
 var SOURCE_DIR = 'src';
 var TARGET_DIR = 'build';
 
 var ENV = process.env.NODE_ENV;
+
+var bowerComponents = {
+    js: [
+        'jquery/dist/jquery.js',
+        'bootswatch-dist/js/bootstrap.js',
+        'angular/angular.js',
+        'angular-route/angular-route.js',
+        'ng-idle/angular-idle.js',
+        'angular-translate/angular-translate.js'
+    ],
+    css: [
+        'bootswatch-dist/css/bootstrap.css',
+        'angular/angular-csp.css'
+    ]
+};
 
 function isProduction() {
     return ENV === 'production';
@@ -36,18 +53,26 @@ gulp.task('static', function () {
 });
 
 
-gulp.task('style_ext', function () {
-    return gulp
-        .src(SOURCE_DIR + '/style/ext/*.css')
-        .pipe(order([
-        //    'normalize-*',
-         //   'bootstrap.css',
-            //'bootstrap-responsive.css',
-            'bootstrap-theme.min.css'
-        ]))
+gulp.task('bower_components', function () {
+
+    var jsFilter = gulpFilter(bowerComponents.js);
+    var cssFilter = gulpFilter(bowerComponents.css);
+
+    return bower()
+
+        .pipe(jsFilter)
+        .pipe(order(bowerComponents.js))
+        .pipe(concat('external.js'))
+        .pipe(gulpIf(isProduction, uglify()))
+        .pipe(gulp.dest(TARGET_DIR + '/js'))
+        .pipe(jsFilter.restore())
+
+        .pipe(cssFilter)
+        .pipe(order(bowerComponents.css))
         .pipe(concat('external.css'))
         .pipe(gulpIf(isProduction, cssmin()))
-        .pipe(gulp.dest(TARGET_DIR + '/css'));
+        .pipe(gulp.dest(TARGET_DIR + '/css/'))
+        .pipe(cssFilter.restore());
 });
 
 gulp.task('style_app', function () {
@@ -72,21 +97,6 @@ gulp.task('html', function () {
         .pipe(gulp.dest(TARGET_DIR));
 });
 
-gulp.task('scripts_ext', function () {
-    return gulp
-        .src(SOURCE_DIR + '/script/ext/*')
-        .pipe(order([
-            'jquery-*.js',
-            'angular.js',
-            'angular-translate.js',
-            'angular-idle.js',
-            'bootstrap.js'
-        ]))
-        .pipe(concat('external.js'))
-        .pipe(gulpIf(isProduction, uglify()))
-        .pipe(gulp.dest(TARGET_DIR + '/js'));
-});
-
 gulp.task('scripts_app', function () {
     return gulp
         .src(SOURCE_DIR + '/script/app.js')
@@ -97,13 +107,13 @@ gulp.task('scripts_app', function () {
 });
 
 gulp.task('build', function(callback) {
-    sequence('clean', ['html', 'static', 'images', 'style_app', 'style_ext', 'scripts_ext', 'scripts_app'], callback);
+    sequence('clean', ['html', 'static', 'images', 'style_app', 'bower_components', 'scripts_app'], callback);
 });
 
 gulp.task('dev', function(callback) {
     ENV = 'development';
 
-    sequence('clean', ['html', 'static', 'images', 'style_ext', 'style_app', 'scripts_ext', 'scripts_app'], function() {
+    sequence('clean', ['html', 'static', 'images', 'style_app', 'bower_components', 'scripts_app'], function() {
         gulp.watch(SOURCE_DIR + '/**/*.html', ['html']);
         gulp.watch(SOURCE_DIR + '/style/**/*.less', ['style_app']);
         gulp.watch(SOURCE_DIR + '/script/**/*.js', ['scripts_app']);
