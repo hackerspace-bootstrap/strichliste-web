@@ -1,6 +1,5 @@
 module.exports.install = function(app) {
     app.controller('IndexController', function ($scope, locationService, userService) {
-        $scope.title = "These are the dudes";
 
         $scope.userClick = function(user_id) {
             locationService.gotoUser(user_id);

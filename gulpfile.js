@@ -24,7 +24,6 @@ var ENV = process.env.NODE_ENV;
 var bowerComponents = {
     js: [
         'jquery/dist/jquery.js',
-        'bootswatch-dist/js/bootstrap.js',
         'angular/angular.js',
         'angular-route/angular-route.js',
         'ng-idle/angular-idle.js',
