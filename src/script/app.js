@@ -10,7 +10,7 @@ var transactionService = require('./lib/services/transaction');
 
 var settings = require('./lib/settings');
 
-var app = angular.module('strichliste', ['ngRoute', 'ngIdle'])
+var app = angular.module('strichliste', ['ngRoute'])
    .config(function ($routeProvider) {
 
        $routeProvider
