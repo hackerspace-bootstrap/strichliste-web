@@ -1,7 +1,19 @@
-<ul class="user-list col-xs-12">
-    <li ng-repeat="user in users | orderBy:'name'" ng-click="userClick(user.id)" class="col-xs-2 panel panel-default" title="{{user.name}}">
-        <div class="name">{{user.name}}</div>
-        <div class="balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance|number:2}} €</div>
-    </li>
-    <li class="col-xs-2 panel panel-default create-user" ng-click="createUserClick()">+</li>
-</ul>
+<div class="col-xs-12">
+    <h3>active users</h3>
+    <ul class="user-list container">
+        <li ng-repeat="user in users | filter:isActiveUser | orderBy:'name'" ng-click="userClick(user.id)" class="col-xs-2 panel panel-default" title="{{user.name}}">
+            <div class="name">{{user.name}}</div>
+            <div class="balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance|number:2}} €</div>
+        </li>
+        <li class="col-xs-2 panel panel-default create-user" ng-click="createUserClick()">+</li>
+    </ul>
+
+    <h3>inactive users</h3>
+    <ul class="user-list container">
+        <li ng-repeat="user in users | filter:isInactiveUser | orderBy:'name'" ng-click="userClick(user.id)" class="col-xs-2 panel panel-default" title="{{user.name}}">
+            <div class="name">{{user.name}}</div>
+            <div class="balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance|number:2}} €</div>
+        </li>
+        <li class="col-xs-2 panel panel-default create-user" ng-click="createUserClick()">+</li>
+    </ul>
+</div>
