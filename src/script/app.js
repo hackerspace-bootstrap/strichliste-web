@@ -29,11 +29,6 @@ var app = angular.module('strichliste', ['ngRoute', 'ngIdle'])
            .otherwise({
                redirectTo: '/'
            });
-   })
-   .config(function ($idleProvider, $keepaliveProvider) {
-       $idleProvider.idleDuration(settings.idleTimeout); // in seconds
-       $idleProvider.warningDuration(0); // in seconds
-       $keepaliveProvider.interval(2); // in seconds
    });
 
 indexController.install(app);
