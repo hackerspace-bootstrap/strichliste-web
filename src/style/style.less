@@ -58,20 +58,31 @@ button.back {
   width: 100%;
 }
 
-.balance.negative {
+.negative, .change-negative {
   color: #d9230f;
+}
+
+.change-positive {
+  color: #4da309;
+}
+
+.balance, .account-balance {
+  -webkit-transition: all 1.0s ease-in;
+
+  &.change-negative, &.change-positive {
+    -webkit-transition: all 0.15s ease-in;
+  }
 }
 
 .user {
   position: relative;
 
-  .balance {
+  .account-balance {
     position: absolute;
     top: -4px;
     right: 13px;
 
     font-size: 72px;
-
   }
 
   .credit {

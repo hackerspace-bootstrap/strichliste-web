@@ -1,7 +1,7 @@
 <div class="user">
     <div class="col-xs-12">
         <h2>User „{{user.name}}”</h2>
-        <div class="balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance|number:2}} €</div>
+        <div class="account-balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance|number:2}} €</div>
     </div>
 
     <div class="col-xs-6 credit">
@@ -18,7 +18,7 @@
             <tbody>
                 <tr ng-repeat="transaction in user.transactions | orderBy:'-id' | limitTo : 5">
                     <td>{{transaction.createDate}}</td>
-                    <td>{{transaction.value|number:2}} €</td>
+                    <td class="balance" ng-class="transaction.value < 0 ? 'negative' : ''">{{transaction.value|number:2}} €</td>
                 </tr>
             </tbody>
         </table>
