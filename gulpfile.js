@@ -26,7 +26,6 @@ var bowerComponents = {
         'jquery/dist/jquery.js',
         'angular/angular.js',
         'angular-route/angular-route.js',
-        'ng-idle/angular-idle.js',
         'angular-translate/angular-translate.js'
     ],
     css: [
