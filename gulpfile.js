@@ -53,12 +53,10 @@ gulp.task('static', function () {
 
 
 gulp.task('bower_components', function () {
-
     var jsFilter = gulpFilter(bowerComponents.js);
     var cssFilter = gulpFilter(bowerComponents.css);
 
     return bower()
-
         .pipe(jsFilter)
         .pipe(order(bowerComponents.js))
         .pipe(concat('external.js'))
@@ -92,7 +90,7 @@ gulp.task('images', function () {
 gulp.task('html', function () {
     return gulp
         .src(SOURCE_DIR + '/**/*.html')
-        .pipe(gulpIf(isProduction, htmlMin()))
+        .pipe(gulpIf(isProduction, htmlMin({empty: true})))
         .pipe(gulp.dest(TARGET_DIR));
 });
 
