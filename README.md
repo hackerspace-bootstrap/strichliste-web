@@ -1,17 +1,9 @@
 # strichliste-web, WIP
 
-Until now the `strichliste-web` only features an empty project that features a build system.
-Included are:
+## requirements
 
-* jquery
-* angular
-* angular-translate
-* bootstrap
-* browserify
-* less
-
-The buildsystem will concatenate script library files with compiled commonJS modules (browserify), compile less and concatenate it with library style files, copy images and static template resources.
-The output folder is `./build` whereas development is done in `./src`.
+* [NPM](https://www.npmjs.org/)
+* [Bower](http://bower.io/)
 
 ## installation
 
@@ -44,7 +36,7 @@ The build process will then be run again when certain file has been changed.
 $ ./node_modules/.bin/gulp dev
 ````
 
-Bear in mind: The development process until now is somewhat fragile, if your source code contains syntax errors the broserify will fail which will in tun cause the dev watcher to fail.
+Bear in mind: The development process until now is somewhat fragile, if your source code contains syntax errors the browserify compiler will fail which will in tun cause the dev watcher to fail.
 This will be fixed in the near future.
 
 ## development server
