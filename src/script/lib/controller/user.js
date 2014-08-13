@@ -23,7 +23,8 @@ module.exports.install = function(app) {
         $scope.transactionClick = function(value) {
 
             if(settings.audio.transaction) {
-                angular.element('#transactionAudioElement')[0].play();
+                var audio = new Audio(settings.audio.transaction);
+                audio.play();
             }
 
             balanceElement.addClass((value > 0)? 'change-positive' : 'change-negative');
