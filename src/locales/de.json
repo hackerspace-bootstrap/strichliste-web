@@ -1,0 +1,12 @@
+{
+    "indexActiveUser": "Aktive Benutzer",
+    "indexInactiveUser": "Inaktive Benutzer",
+    "userChargeWallet": "Lade dein Guthaben auf",
+    "userSpendMoney": "Bezahle deinen Einkauf",
+    "userPageTitle": "Benutzer „{{name}}”",
+    "userLastTransactions": "{{number}} letzten Transaktionen",
+    "createUserTitle": "Neuen Benutzer erstellen",
+    "createUserSubmitLabel": "Erstellen",
+    "createUserInputPlaceholder": "Dein Benutzername",
+    "back": "Zurück"
+}

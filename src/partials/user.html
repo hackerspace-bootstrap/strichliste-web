@@ -1,34 +1,34 @@
 <div class="user">
     <div class="col-xs-12">
-        <h2>User „{{user.name}}”</h2>
-        <div class="account-balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance|number:2}} €</div>
+        <h2>{{'userPageTitle' | translate:user}}</h2>
+        <div class="account-balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance | number:2}} €</div>
     </div>
 
     <div class="col-xs-6 credit">
         <div class="charge-wallet">
-            <h3>Charge your wallet</h3>
-            <button class="btn btn-success btn-lg" ng-click="transactionClick(step)" ng-repeat="step in depositSteps">{{step|number:2}} €</button>
+            <h3>{{'userChargeWallet' | translate}}</h3>
+            <button class="btn btn-success btn-lg" ng-click="transactionClick(step)" ng-repeat="step in depositSteps">{{step | number:2}} €</button>
         </div>
 
         <div class="pay">
-            <h3>What you have to pay</h3>
-            <button class="btn btn-primary btn-lg" ng-click="transactionClick(step*-1)" ng-repeat="step in dispenseSteps">{{step|number:2}} €</button>
+            <h3>{{'userSpendMoney' | translate}}</h3>
+            <button class="btn btn-primary btn-lg" ng-click="transactionClick(step*-1)" ng-repeat="step in dispenseSteps">{{step | number:2}} €</button>
         </div>
     </div>
 
     <div class="col-xs-6">
-        <h3>Last 5 transactions</h3>
+        <h3>{{'userLastTransactions' | translate:'{number: 5}'}}</h3>
         <table class="table table-striped">
             <tbody>
                 <tr ng-repeat="transaction in user.transactions | orderBy:'-id' | limitTo : 5">
                     <td>{{transaction.createDate}}</td>
-                    <td class="balance" ng-class="transaction.value < 0 ? 'negative' : ''">{{transaction.value|number:2}} €</td>
+                    <td class="balance" ng-class="transaction.value < 0 ? 'negative' : ''">{{transaction.value | number:2}} €</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
     <div class="col-xs-12">
-        <button class="btn btn-default btn-lg back" ng-click="backClick()">back</button>
+        <button class="btn btn-default btn-lg back" ng-click="backClick()">{{'back' | translate}}</button>
     </div>
 </div>

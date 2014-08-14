@@ -3,6 +3,7 @@ var timeUnits = require('./timeUnits');
 module.exports = {
     server: 'http://localhost:8080',
     inactiveUserPeriod: 30 * timeUnits.DAYS,
+    preferredLanguage: 'de',
     audio: {
         transaction: 'cash-register.ogg'
     },

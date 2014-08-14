@@ -1,0 +1,12 @@
+{
+    "indexActiveUser": "Active user",
+    "indexInactiveUser": "Inactive user",
+    "userChargeWallet": "Charge your wallet",
+    "userSpendMoney": "What you have to pay",
+    "userPageTitle": "User „{{name}}”",
+    "userLastTransactions": "Last {{number}} transactions",
+    "createUserTitle": "Create new user",
+    "createUserSubmitLabel": "Create user",
+    "createUserInputPlaceholder": "your username",
+    "back": "back"
+}

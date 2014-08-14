@@ -10,7 +10,7 @@ var transactionService = require('./lib/services/transaction');
 
 var settings = require('./lib/settings');
 
-var app = angular.module('strichliste', ['ngRoute'])
+var app = angular.module('strichliste', ['ngRoute', 'pascalprecht.translate'])
    .config(function ($routeProvider) {
 
        $routeProvider
@@ -29,6 +29,20 @@ var app = angular.module('strichliste', ['ngRoute'])
            .otherwise({
                redirectTo: '/'
            });
+   })
+   .config(function ($translateProvider) {
+
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'locales/',
+            suffix: '.json'
+        });
+
+        if(settings.preferredLanguage) {
+            $translateProvider.preferredLanguage(settings.preferredLanguage)
+        }
+
+        $translateProvider
+            .fallbackLanguage('en');
    });
 
 indexController.install(app);

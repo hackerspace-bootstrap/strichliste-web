@@ -26,7 +26,8 @@ var bowerComponents = {
         'jquery/dist/jquery.js',
         'angular/angular.js',
         'angular-route/angular-route.js',
-        'angular-translate/angular-translate.js'
+        'angular-translate/angular-translate.js',
+        'angular-translate-loader-static-files/angular-translate-loader-static-files.js'
     ],
     css: [
         'bootswatch-dist/css/bootstrap.css',
@@ -50,6 +51,11 @@ gulp.task('static', function () {
         .pipe(gulp.dest(TARGET_DIR));
 });
 
+gulp.task('locales', function () {
+    return gulp
+        .src(SOURCE_DIR + '/locales/*')
+        .pipe(gulp.dest(TARGET_DIR +'/locales/'));
+});
 
 gulp.task('bower_components', function () {
     var jsFilter = gulpFilter(bowerComponents.js);
@@ -101,17 +107,18 @@ gulp.task('scripts_app', function () {
 });
 
 gulp.task('build', function(callback) {
-    sequence('clean', ['html', 'static', 'images', 'style_app', 'bower_components', 'scripts_app'], callback);
+    sequence('clean', ['html', 'static', 'locales', 'images', 'style_app', 'bower_components', 'scripts_app'], callback);
 });
 
 gulp.task('dev', function(callback) {
     ENV = 'development';
 
-    sequence('clean', ['html', 'static', 'images', 'style_app', 'bower_components', 'scripts_app'], function() {
+    sequence('clean', ['html', 'static', 'locales', 'images', 'style_app', 'bower_components', 'scripts_app'], function() {
         gulp.watch(SOURCE_DIR + '/**/*.html', ['html']);
         gulp.watch(SOURCE_DIR + '/style/**/*.less', ['style_app']);
         gulp.watch(SOURCE_DIR + '/script/**/*.js', ['scripts_app']);
         gulp.watch(SOURCE_DIR + '/img/**/*', ['images']);
+        gulp.watch(SOURCE_DIR + '/locales/*', ['locales']);
 
         callback();
     });
