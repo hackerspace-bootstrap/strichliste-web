@@ -32,17 +32,20 @@ var app = angular.module('strichliste', ['ngRoute', 'pascalprecht.translate'])
    })
    .config(function ($translateProvider) {
 
-        $translateProvider.useStaticFilesLoader({
-            prefix: 'locales/',
-            suffix: '.json'
-        });
+        $translateProvider
+            .useStaticFilesLoader({
+                prefix: 'locales/',
+                suffix: '.json'
+            })
+            .fallbackLanguage('en');
 
         if(settings.preferredLanguage) {
             $translateProvider.preferredLanguage(settings.preferredLanguage)
         }
 
-        $translateProvider
-            .fallbackLanguage('en');
+   })
+   .run(function($rootScope) {
+        $rootScope.currency = settings.currency;
    });
 
 indexController.install(app);

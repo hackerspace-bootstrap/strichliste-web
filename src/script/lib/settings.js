@@ -2,6 +2,7 @@ var timeUnits = require('./timeUnits');
 
 module.exports = {
     server: 'http://localhost:8080',
+    currency: "€",
     inactiveUserPeriod: 30 * timeUnits.DAYS,
     preferredLanguage: 'en',
     audio: {

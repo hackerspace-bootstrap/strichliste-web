@@ -1,9 +1,9 @@
 <div class="col-xs-12">
-    <h3>{{ 'indexActiveUser' | translate }}</h3>
+    <h3>{{ 'indexActiveUser' | translate }} {{foobar}}</h3>
     <ul class="user-list container">
         <li ng-repeat="user in users | filter:isActiveUser | orderBy:'name'" ng-click="userClick(user.id)" class="col-xs-2 panel panel-default" title="{{user.name}}">
             <div class="name">{{user.name}}</div>
-            <div class="balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance | number:2}} €</div>
+            <div class="balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance | number:2}} {{currency}}</div>
         </li>
         <li class="col-xs-2 panel panel-default create-user" ng-click="createUserClick()">+</li>
     </ul>
@@ -12,7 +12,7 @@
     <ul class="user-list container">
         <li ng-repeat="user in users | filter:isInactiveUser | orderBy:'name'" ng-click="userClick(user.id)" class="col-xs-2 panel panel-default" title="{{user.name}}">
             <div class="name">{{user.name}}</div>
-            <div class="balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance | number:2}} €</div>
+            <div class="balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance | number:2}} {{currency}}</div>
         </li>
         <li class="col-xs-2 panel panel-default create-user" ng-click="createUserClick()">+</li>
     </ul>
