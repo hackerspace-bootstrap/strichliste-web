@@ -35,7 +35,6 @@ MessageService.prototype._write = function(type, message, variableReplacements) 
     var that = this;
 
     this._$translate(message, variableReplacements || {}).then(function (translation) {
-        console.log(translation, message);
         that._$rootScope.alerts.push({type: type, msg: translation});
     });
 };
