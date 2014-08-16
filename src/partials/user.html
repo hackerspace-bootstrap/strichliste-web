@@ -11,12 +11,12 @@
 
         <div class="col-xs-6 credit">
             <div class="charge-wallet">
-                <h3>{{'userChargeWallet' | translate}}</h3>
+                <h3 translate>userChargeWallet</h3>
                 <button class="btn btn-success btn-lg" ng-click="transactionClick(step)" ng-repeat="step in depositSteps">{{step | number:2}} {{currency}}</button>
             </div>
 
             <div class="pay">
-                <h3>{{'userSpendMoney' | translate}}</h3>
+                <h3 translate>userSpendMoney</h3>
                 <button class="btn btn-primary btn-lg" ng-click="transactionClick(step*-1)" ng-repeat="step in dispenseSteps">{{step | number:2}} {{currency}}</button>
             </div>
         </div>
