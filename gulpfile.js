@@ -23,15 +23,16 @@ var ENV = process.env.NODE_ENV;
 
 var bowerComponents = {
     js: [
-        'jquery/dist/jquery.js',
-        'angular/angular.js',
-        'angular-route/angular-route.js',
-        'angular-translate/angular-translate.js',
-        'angular-translate-loader-static-files/angular-translate-loader-static-files.js'
+        'bower_components/jquery/dist/jquery.js',
+        'bower_components/angular/angular.js',
+        'bower_components/angular-route/angular-route.js',
+        'bower_components/angular-translate/angular-translate.js',
+        'bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
+        'src/script/ext/*'
     ],
     css: [
-        'bootswatch-dist/css/bootstrap.css',
-        'angular/angular-csp.css'
+        'bower_components/bootswatch-dist/css/bootstrap.css',
+        'bower_components/angular/angular-csp.css'
     ]
 };
 
@@ -58,19 +59,24 @@ gulp.task('locales', function () {
 });
 
 gulp.task('bower_components', function () {
-    var jsFilter = gulpFilter(bowerComponents.js);
-    var cssFilter = gulpFilter(bowerComponents.css);
+    return bower();
+});
 
-    return bower()
-        .pipe(jsFilter)
-        .pipe(order(bowerComponents.js))
+gulp.task('scripts', function() {
+    var jsFilter = gulpFilter(bowerComponents.js);
+    return gulp
+        .src(bowerComponents.js)
         .pipe(concat('external.js'))
         .pipe(gulpIf(isProduction, uglify()))
         .pipe(gulp.dest(TARGET_DIR + '/js'))
-        .pipe(jsFilter.restore())
+        .pipe(jsFilter.restore());
+});
 
-        .pipe(cssFilter)
-        .pipe(order(bowerComponents.css))
+gulp.task('style', function() {
+    var cssFilter = gulpFilter(bowerComponents.css);
+
+    return gulp
+        .src(bowerComponents.css)
         .pipe(concat('external.css'))
         .pipe(gulpIf(isProduction, cssmin()))
         .pipe(gulp.dest(TARGET_DIR + '/css/'))
@@ -107,13 +113,13 @@ gulp.task('scripts_app', function () {
 });
 
 gulp.task('build', function(callback) {
-    sequence('clean', ['html', 'static', 'locales', 'images', 'style_app', 'bower_components', 'scripts_app'], callback);
+    sequence('clean', ['html', 'static', 'locales', 'images', 'style_app', 'bower_components', 'scripts', 'style', 'scripts_app'], callback);
 });
 
 gulp.task('dev', function(callback) {
     ENV = 'development';
 
-    sequence('clean', ['html', 'static', 'locales', 'images', 'style_app', 'bower_components', 'scripts_app'], function() {
+    sequence('clean', ['html', 'static', 'locales', 'images', 'style_app', 'bower_components', 'scripts', 'style', 'scripts_app'], function() {
         gulp.watch(SOURCE_DIR + '/**/*.html', ['html']);
         gulp.watch(SOURCE_DIR + '/style/**/*.less', ['style_app']);
         gulp.watch(SOURCE_DIR + '/script/**/*.js', ['scripts_app']);
