@@ -2,8 +2,8 @@ var angular = require('../../lib/angular');
 
 function LocationService($location) {
 
-    this.gotoUser = function(name) {
-        $location.path('/user/' + name);
+    this.gotoUser = function(user_id) {
+        $location.path('/user/' + user_id);
     };
 
     this.gotoCreateUser = function() {
