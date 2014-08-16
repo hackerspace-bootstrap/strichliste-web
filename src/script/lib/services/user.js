@@ -10,7 +10,7 @@ function UserService($http) {
     };
 
     this.getUser = function(user_id) {
-        return $http.get(settings.server + '/user/' + encodeURIComponent(user_id));
+        return $http.get(settings.server + '/user/' + user_id);
     };
 
     this.createUser = function(name) {
