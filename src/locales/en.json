@@ -5,8 +5,12 @@
     "userSpendMoney": "What you have to pay",
     "userPageTitle": "User „{{name}}”",
     "userLastTransactions": "Last {{number}} transactions",
+    "userDoesNotExist": "User does not exist",
+    "userBoundaryReached": "Account balance boundary reached (upper or lower limit)",
     "createUserTitle": "Create new user",
     "createUserSubmitLabel": "Create user",
     "createUserInputPlaceholder": "your username",
-    "back": "back"
+    "createUserExists": "User „{{name}}” already exists",
+    "back": "back",
+    "uncaughtError": "An uncaught error appeared: {{message}}"
 }

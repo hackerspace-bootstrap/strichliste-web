@@ -1,5 +1,7 @@
 <div class="user-create">
     <div class="col-md-12">
+        <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
         <h2 translate>createUserTitle</h2>
         <form role="form" ng-submit="createUser()">
             <input type="text" name="name" placeholder="{{'createUserInputPlaceholder' | translate}}" maxlength="23" class="form-control input-lg" ng-model="name" required autocomplete="off">

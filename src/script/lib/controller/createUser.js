@@ -1,5 +1,5 @@
 module.exports.install = function(app) {
-    app.controller('CreateUserController', function ($scope, locationService, userService) {
+    app.controller('CreateUserController', function ($scope, messageService, locationService, userService) {
 
         $scope.createUser = function() {
             userService
@@ -7,8 +7,12 @@ module.exports.install = function(app) {
                 .success(function() {
                     locationService.gotoHome();
                 })
-                .error(function() {
-                    alert("Something went wrong");
+                .error(function(body, httpCode) {
+                    if(httpCode == 409) {
+                        return messageService.error('createUserExists', {name: $scope.name});
+                    }
+
+                    return messageService.httpError(body, httpCode);
                 });
         };
     });

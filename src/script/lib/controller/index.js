@@ -30,8 +30,8 @@ module.exports.install = function(app) {
             .success(function(users) {
                 $scope.users = users;
             })
-            .error(function() {
-                alert("Something went wrong");
+            .error(function(body, httpCode) {
+                return messageService.httpError(body, httpCode);
             });
 
 

@@ -4,9 +4,13 @@
     "userChargeWallet": "Lade dein Guthaben auf",
     "userSpendMoney": "Bezahle deinen Einkauf",
     "userPageTitle": "Benutzer „{{name}}”",
-    "userLastTransactions": "{{number}} letzten Transaktionen",
+    "userLastTransactions": "Die {{number}} letzten Transaktionen",
+    "userDoesNotExist": "Dieser Benutzer existiert nicht",
+    "userBoundaryReached": "Die Ober- oder Untergrenze des Kontos wurde erreicht",
     "createUserTitle": "Neuen Benutzer erstellen",
     "createUserSubmitLabel": "Erstellen",
     "createUserInputPlaceholder": "Dein Benutzername",
-    "back": "Zurück"
+    "createUserExists": "Benutzer „{{name}}” existiert bereits",
+    "back": "Zurück",
+    "uncaughtError": "Ein unbehandelter Fehler ist aufgetreten: {{message}}"
 }

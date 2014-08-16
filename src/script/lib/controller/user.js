@@ -1,7 +1,7 @@
 var settings = require('../settings');
 
 module.exports.install = function(app) {
-    app.controller('UserController', function ($scope, $routeParams, $timeout, locationService, transactionService, userService) {
+    app.controller('UserController', function ($scope, $routeParams, $timeout, messageService, locationService, transactionService, userService) {
 
         var balanceElement = angular.element('.account-balance');
 
@@ -11,8 +11,12 @@ module.exports.install = function(app) {
                 .success(function(user) {
                     $scope.user = user;
                 })
-                .error(function(response) {
-                    alert(response.message);
+                .error(function(body, httpCode) {
+                    if(httpCode == 404) {
+                        return messageService.error('userDoesNotExist');
+                    }
+
+                    return messageService.httpError(body, httpCode);
                 });
         }
 
@@ -38,8 +42,12 @@ module.exports.install = function(app) {
                 .success(function() {
                     loadUser();
                 })
-                .error(function(response) {
-                    alert(response.message);
+                .error(function(body, httpCode) {
+                    if(httpCode == 403) {
+                        return messageService.error('userBoundaryReached');
+                    }
+
+                    return messageService.httpError(body, httpCode);
                 });
         };
 
