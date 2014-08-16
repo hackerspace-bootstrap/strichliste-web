@@ -24,6 +24,10 @@ module.exports.install = function(app) {
             locationService.gotoHome();
         };
 
+        $scope.showAllClick = function() {
+            locationService.gotoTransactions($routeParams.user_id);
+        };
+
         $scope.transactionClick = function(value) {
 
             if(settings.audio.transaction) {

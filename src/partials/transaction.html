@@ -1,10 +1,25 @@
-<div class="user">
-    <div class="col-xs-12">
-        <h2>Transactions for „{{user.name}}”</h2>
+<div class="col-xs-12 user-transaction">
+    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+    <div ng-if="user">
+        <h2>{{'transactionForUser' | translate:'{name:user.name}'}} - {{'transactionCurrentPage' | translate:'{current:currentPage, max:numPages}'}}</h2>
+
+        <pagination total-items="totalItems" max-size="10"
+                    items-per-page="entriesPerPage" num-pages="numPages"
+                    data-boundary-links="true" page="currentPage"
+                    on-select-page="pageChanged(page)"
+                    previous-text="{{'previousPage' | translate}}" next-text="{{'nextPage' | translate}}"
+                    first-text="{{'firstPage' | translate}}" last-text="{{'lastPage' | translate}}"></pagination>
 
         <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate>transactionCreateDate</th>
+                    <th translate>transactionValue</th>
+                </tr>
+            </thead>
             <tbody>
-                <tr ng-repeat="transaction in user.transactions | orderBy:'-id' | limitTo : 5">
+                <tr ng-repeat="transaction in transactions | orderBy:'-id'">
                     <td>{{transaction.createDate}}</td>
                     <td>{{transaction.value|number:2}} €</td>
                 </tr>
@@ -12,4 +27,6 @@
         </table>
 
     </div>
+
+    <button class="btn btn-default btn-lg back" translate ng-click="backClick()">back</button>
 </div>

@@ -12,7 +12,11 @@ function LocationService($location) {
 
     this.gotoHome = function() {
         $location.path('/');
-    }
+    };
+
+    this.gotoTransactions = function(user_id) {
+        $location.path('/user/' + user_id + '/transaction');
+    };
 }
 
 module.exports.install = function (app) {

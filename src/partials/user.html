@@ -22,7 +22,7 @@
         </div>
 
         <div class="col-xs-6">
-            <h3 translate translate-values="{number: 5}">userLastTransactions</h3>
+            <h3>{{'userLastTransactions' | translate:'{number: 5}'}} (<a ng-click="showAllClick()">{{'showAll' | translate}}</a>)</h3>
             <table class="table table-striped">
                 <tbody>
                     <tr ng-repeat="transaction in user.transactions | orderBy:'-id' | limitTo : 5">

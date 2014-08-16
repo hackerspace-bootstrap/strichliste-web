@@ -5,8 +5,13 @@ var settings = require('../settings');
 
 function TransactionService($http) {
 
-    this.getTransactionByUserId = function(user_id) {
-        return $http.get(settings.server + '/user/' + user_id + '/transaction');
+    this.getTransactionByUserId = function(user_id, offset, limit) {
+        return $http.get(settings.server + '/user/' + user_id + '/transaction', {
+            params: {
+                limit: limit,
+                offset: offset
+            }
+        });
     };
 
     this.createTransaction = function(user_id, value) {

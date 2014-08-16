@@ -12,5 +12,14 @@
     "createUserInputPlaceholder": "Dein Benutzername",
     "createUserExists": "Benutzer „{{name}}” existiert bereits",
     "back": "Zurück",
-    "uncaughtError": "Ein unbehandelter Fehler ist aufgetreten: {{message}}"
+    "uncaughtError": "Ein unbehandelter Fehler ist aufgetreten: {{message}}",
+    "transactionForUser": "Transaktionsübersicht für „{{name}}”",
+    "transactionCurrentPage": "Seite {{current}}/{{max}}",
+    "transactionCreateDate": "Buchungsdatum",
+    "transactionValue": "Wert",
+    "nextPage": "Nächste",
+    "previousPage": "Vorherige",
+    "lastPage": "Letzte",
+    "firstPage": "Erste",
+    "showAll": "Alle Anzeigen"
 }
