@@ -1,6 +1,6 @@
 <div class="user">
     <div class="col-xs-12">
-        <h2>{{'userPageTitle' | translate:user}}</h2>
+        <h2 translate translate-values="{name:user.name}">userPageTitle</h2>
         <div class="account-balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance | number:2}} {{currency}}</div>
     </div>
 
@@ -17,7 +17,7 @@
     </div>
 
     <div class="col-xs-6">
-        <h3>{{'userLastTransactions' | translate:'{number: 5}'}}</h3>
+        <h3 translate translate-values="5">userLastTransactions</h3>
         <table class="table table-striped">
             <tbody>
                 <tr ng-repeat="transaction in user.transactions | orderBy:'-id' | limitTo : 5">
@@ -29,6 +29,6 @@
     </div>
 
     <div class="col-xs-12">
-        <button class="btn btn-default btn-lg back" ng-click="backClick()">{{'back' | translate}}</button>
+        <button class="btn btn-default btn-lg back" ng-click="backClick()" translate>back</button>
     </div>
 </div>
