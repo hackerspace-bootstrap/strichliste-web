@@ -7,7 +7,7 @@ var createUserController = require('./lib/controller/createUser');
 var userService = require('./lib/services/user');
 var locationService = require('./lib/services/location');
 var transactionService = require('./lib/services/transaction');
-var messageService = require('./lib/services/messageService');
+var messageService = require('./lib/services/message');
 
 var settings = require('./lib/settings');
 
