@@ -7,10 +7,11 @@ var createUserController = require('./lib/controller/createUser');
 var userService = require('./lib/services/user');
 var locationService = require('./lib/services/location');
 var transactionService = require('./lib/services/transaction');
+var messageService = require('./lib/services/messageService');
 
 var settings = require('./lib/settings');
 
-var app = angular.module('strichliste', ['ngRoute', 'pascalprecht.translate'])
+var app = angular.module('strichliste', ['ngRoute', 'pascalprecht.translate', 'ui.bootstrap'])
    .config(function ($routeProvider) {
 
        $routeProvider
@@ -55,3 +56,4 @@ createUserController.install(app);
 userService.install(app);
 locationService.install(app);
 transactionService.install(app);
+messageService.install(app);
