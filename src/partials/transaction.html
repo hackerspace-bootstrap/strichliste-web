@@ -2,7 +2,8 @@
     <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
     <div ng-if="user">
-        <h2>{{'transactionForUser' | translate:'{name:user.name}'}} - {{'transactionCurrentPage' | translate:'{current:currentPage, max:numPages}'}}</h2>
+        <h2><span translate translate-value-name="{{user.name}}">transactionForUser</span> -
+            <span translate translate-values="{current:currentPage, max:numPages}">transactionCurrentPage</span></h2>
 
         <pagination total-items="totalItems" max-size="10"
                     items-per-page="entriesPerPage" num-pages="numPages"
