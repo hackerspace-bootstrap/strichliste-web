@@ -39,6 +39,7 @@ var app = angular.module('strichliste', ['ngRoute', 'pascalprecht.translate', 'u
    .config(function ($translateProvider) {
 
         $translateProvider
+            .useSanitizeValueStrategy('escaped')
             .useStaticFilesLoader({
                 prefix: 'locales/',
                 suffix: '.json'

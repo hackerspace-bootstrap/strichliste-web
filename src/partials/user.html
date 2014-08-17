@@ -5,7 +5,7 @@
 
     <div ng-if="user">
         <div class="col-xs-12">
-            <h2 translate translate-values="{name:user.name}">userPageTitle</h2>
+            <h2 translate translate-value-name="{{user.name}}">userPageTitle</h2>
             <div class="account-balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance | number:2}} {{currency}}</div>
         </div>
 
