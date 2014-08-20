@@ -1,4 +1,4 @@
-# strichliste-web, WIP
+# strichliste-web
 
 ## requirements
 
@@ -30,4 +30,4 @@ It also starts an development server, listening on port `:8081`.
 $ make development
 ````
 
-To access the development version access http://localhost:8081
+To access the development version visit [http://localhost:8081](http://localhost:8081)
