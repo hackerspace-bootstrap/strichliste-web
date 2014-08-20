@@ -3,7 +3,6 @@
 ## requirements
 
 * [NPM](https://www.npmjs.org/)
-* [Bower](http://bower.io/)
 
 ## installation
 
