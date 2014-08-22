@@ -1,5 +1,9 @@
 # strichliste-web
 
+## demo
+
+Checkout out the [demo](http://demo.hackerspace-bootstrap.org/strichliste-web/)!
+
 ## requirements
 
 * [NPM](https://www.npmjs.org/)
