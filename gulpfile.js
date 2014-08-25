@@ -36,7 +36,7 @@ var bowerComponents = {
     ]
 };
 
-function isProduction() {
+function isProduction () {
     return ENV === 'production';
 }
 
@@ -55,14 +55,14 @@ gulp.task('static', function () {
 gulp.task('locales', function () {
     return gulp
         .src(SOURCE_DIR + '/locales/*')
-        .pipe(gulp.dest(TARGET_DIR +'/locales/'));
+        .pipe(gulp.dest(TARGET_DIR + '/locales/'));
 });
 
 gulp.task('bower_components', function () {
     return bower();
 });
 
-gulp.task('scripts', function() {
+gulp.task('scripts', ['bower_components'], function () {
     var jsFilter = gulpFilter(bowerComponents.js);
     return gulp
         .src(bowerComponents.js)
@@ -72,7 +72,7 @@ gulp.task('scripts', function() {
         .pipe(jsFilter.restore());
 });
 
-gulp.task('style', function() {
+gulp.task('style', ['bower_components'], function () {
     var cssFilter = gulpFilter(bowerComponents.css);
 
     return gulp
@@ -112,20 +112,18 @@ gulp.task('scripts_app', function () {
         .pipe(gulp.dest(TARGET_DIR + '/js'));
 });
 
-gulp.task('build', function(callback) {
-    sequence('clean', ['html', 'static', 'locales', 'images', 'style_app', 'bower_components', 'scripts', 'style', 'scripts_app'], callback);
+gulp.task('build', function (callback) {
+    sequence('clean', ['html', 'static', 'locales', 'images', 'style_app', 'scripts', 'style', 'scripts_app'], callback);
 });
 
-gulp.task('dev', function(callback) {
+gulp.task('dev', ['build'], function (callback) {
     ENV = 'development';
 
-    sequence('clean', ['html', 'static', 'locales', 'images', 'style_app', 'bower_components', 'scripts', 'style', 'scripts_app'], function() {
-        gulp.watch(SOURCE_DIR + '/**/*.html', ['html']);
-        gulp.watch(SOURCE_DIR + '/style/**/*.less', ['style_app']);
-        gulp.watch(SOURCE_DIR + '/script/**/*.js', ['scripts_app']);
-        gulp.watch(SOURCE_DIR + '/img/**/*', ['images']);
-        gulp.watch(SOURCE_DIR + '/locales/*', ['locales']);
+    gulp.watch(SOURCE_DIR + '/**/*.html', ['html']);
+    gulp.watch(SOURCE_DIR + '/style/**/*.less', ['style_app']);
+    gulp.watch(SOURCE_DIR + '/script/**/*.js', ['scripts_app']);
+    gulp.watch(SOURCE_DIR + '/img/**/*', ['images']);
+    gulp.watch(SOURCE_DIR + '/locales/*', ['locales']);
 
-        callback();
-    });
+    callback();
 });
