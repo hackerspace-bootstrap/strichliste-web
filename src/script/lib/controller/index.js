@@ -28,7 +28,7 @@ module.exports.install = function(app) {
 
         userService.getUsers()
             .success(function(users) {
-                $scope.users = users;
+                $scope.users = users.entries;
             })
             .error(function(body, httpCode) {
                 return messageService.httpError(body, httpCode);
