@@ -34,7 +34,6 @@ module.exports.install = function(app) {
                 return messageService.httpError(body, httpCode);
             });
 
-
         $scope.isActiveUser = isActiveUser;
         $scope.isInactiveUser = function(user) {
             return !isActiveUser(user);
