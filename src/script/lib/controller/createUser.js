@@ -15,5 +15,7 @@ module.exports.install = function(app) {
                     return messageService.httpError(body, httpCode);
                 });
         };
+
+        angular.element('.form-input-name').trigger('focus');
     });
 };
