@@ -2,7 +2,7 @@ var settings = require('../settings');
 
 module.exports.install = function(app) {
 
-    app.controller('MetricsController', function ($scope, $translate, metricsService) {
+    app.controller('MetricsController', function ($scope, $translate, metricsService, messageService) {
 
         metricsService
             .getMetrics()
@@ -12,7 +12,7 @@ module.exports.install = function(app) {
                 initChartData(metrics);
             })
             .error(function(body, httpCode) {
-
+                return messageService.httpError(body, httpCode);
             });
 
         function initChartData(metrics) {
