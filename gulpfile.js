@@ -25,11 +25,12 @@ var bowerComponents = {
     js: [
         'bower_components/jquery/dist/jquery.js',
         'bower_components/angular/angular.js',
+        'bower_components/ng-idle/angular-idle.js',
         'bower_components/angular-route/angular-route.js',
         'bower_components/angular-translate/angular-translate.js',
         'bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
-        'bower_components/Chart.js/Chart.min.js',
-        'bower_components/tc-angular-chartjs/dist/tc-angular-chartjs.min.js',
+        'bower_components/Chart.js/Chart.js',
+        'bower_components/tc-angular-chartjs/dist/tc-angular-chartjs.js',
         'src/script/ext/*'
     ],
     css: [

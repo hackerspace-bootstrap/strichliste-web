@@ -21,6 +21,7 @@
     "angular-route": "~1.2.21",
     "angular-translate-loader-static-files": "~2.2.0",
     "Chart.js": "1.0.1-beta.4",
-    "tc-angular-chartjs": "~1.0.5"
+    "tc-angular-chartjs": "~1.0.5",
+    "ng-idle": "~0.3.5"
   }
 }

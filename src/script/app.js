@@ -14,35 +14,37 @@ var metricsService = require('./lib/services/metrics');
 
 var settings = require('./lib/settings');
 
-var app = angular.module('strichliste', ['ngRoute', 'pascalprecht.translate', 'ui.bootstrap', 'tc.chartjs'])
-   .config(function ($routeProvider) {
+var app = angular.module('strichliste', ['ngRoute', 'ngIdle', 'pascalprecht.translate', 'ui.bootstrap', 'tc.chartjs'])
 
-       $routeProvider
-           .when('/', {
-               templateUrl: 'partials/index.html',
-               controller: 'IndexController'
-           })
-           .when('/metrics', {
-               templateUrl: 'partials/metrics.html',
-               controller: 'MetricsController'
-           })
-           .when('/user/:user_id', {
-               templateUrl: 'partials/user.html',
-               controller: 'UserController'
-           })
-           .when('/createUser', {
-               templateUrl: 'partials/createUser.html',
-               controller: 'CreateUserController'
-           })
-           .when('/user/:user_id/transaction', {
-               templateUrl: 'partials/transaction.html',
-               controller: 'TransactionController'
-           })
-           .otherwise({
-               redirectTo: '/'
-           });
-   })
-   .config(function ($translateProvider) {
+    .config(function ($routeProvider) {
+
+        $routeProvider
+            .when('/', {
+                templateUrl: 'partials/index.html',
+                controller: 'IndexController'
+            })
+            .when('/metrics', {
+                templateUrl: 'partials/metrics.html',
+                controller: 'MetricsController'
+            })
+            .when('/user/:user_id', {
+                templateUrl: 'partials/user.html',
+                controller: 'UserController'
+            })
+            .when('/createUser', {
+                templateUrl: 'partials/createUser.html',
+                controller: 'CreateUserController'
+            })
+            .when('/user/:user_id/transaction', {
+                templateUrl: 'partials/transaction.html',
+                controller: 'TransactionController'
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
+    })
+
+    .config(function ($translateProvider) {
 
         $translateProvider
             .useSanitizeValueStrategy('escaped')
@@ -56,10 +58,33 @@ var app = angular.module('strichliste', ['ngRoute', 'pascalprecht.translate', 'u
             $translateProvider.preferredLanguage(settings.preferredLanguage)
         }
 
-   })
+    })
+
    .run(function($rootScope) {
-        $rootScope.currency = settings.currency;
+         $rootScope.currency = settings.currency;
    });
+
+
+if(settings.idleTimeout) {
+    app
+        .config(function($idleProvider) {
+            $idleProvider.idleDuration(Math.ceil(settings.idleTimouet/1000));
+            $idleProvider.warningDuration(1);
+        })
+        .run(function($rootScope, $idle, $location, locationService) {
+
+            $idle.watch();
+
+            $rootScope.$on('$idleTimeout', function() {
+                console.log("Triggaaa");
+
+                if($location.path() != '/') {
+                    locationService.gotoHome();
+                }
+            });
+
+        });
+}
 
 indexController.install(app);
 userController.install(app);

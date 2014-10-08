@@ -4,6 +4,7 @@ module.exports = {
     server: 'http://localhost:8080',
     currency: "€",
     inactiveUserPeriod: ms('30d'),
+    idleTimeout: ms('30s'),
     preferredLanguage: 'en',
     audio: {
         transaction: 'cash-register.ogg'
