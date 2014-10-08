@@ -111,3 +111,73 @@ button.back {
 .pagination {
   cursor: pointer;
 }
+
+.metrics {
+  .metric {
+
+    text-align: center;
+
+    h3 {
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+
+    span {
+      font-size: 34px;
+      font-weight: bold;
+    }
+  }
+
+  .chart {
+    canvas {
+      margin-left: 20px;
+    }
+  }
+
+}
+
+.impress {
+  text-align: center;
+
+  font-size: 11px;
+  list-style: none;
+
+  margin-top: 10px;
+
+  a {
+    padding: 7px 0;
+  }
+
+  li {
+    display: inline;
+  }
+
+  li:last-child:after {
+    display: none;
+  }
+
+  li:after {
+    content: '';
+    margin: 0 10px;
+    border-right: 1px solid #cccccc;
+  }
+}
+
+
+.tc-chart-js-legend {
+  list-style-type: none;
+  padding-left: 0px;
+}
+.tc-chart-js-legend li {
+  display: block;
+  float: left;
+  clear:both;
+  padding:10px;
+}
+.tc-chart-js-legend li span {
+  width:25px;
+  height:25px;
+  display:block;
+  float:left;
+  margin-right:10px;
+}

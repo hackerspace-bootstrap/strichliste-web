@@ -1,0 +1,47 @@
+<div class="metrics">
+
+    <div class="col-xs-12">
+        <h2 translate>metricsOverviewHeadline</h2>
+    </div>
+
+    <div class="col-xs-3 metric">
+        <h3 translate>metricsUsersLabel</h3>
+        <span>{{metrics.countUsers}}</span>
+    </div>
+
+    <div class="col-xs-3 metric">
+        <h3 translate>metricsTransactionsLabel</h3>
+        <span>{{metrics.countTransactions}}</span>
+    </div>
+
+    <div class="col-xs-3 metric">
+        <h3 translate>metricsSystemBalanceLabel</h3>
+        <span ng-class="metrics.overallBalance < 0 ? 'negative' : ''">{{metrics.overallBalance | number:2}} {{currency}}</span>
+    </div>
+
+    <div class="col-xs-3 metric">
+        <h3 translate>metricsAverageBalanceLabel</h3>
+        <span>{{metrics.avgBalance | number: 2}} {{currency}}</span>
+    </div>
+
+    <div class="col-xs-12">
+        <h2 translate>metricsChartIncomeHeadline</h2>
+    </div>
+    <div class="col-xs-11 chart">
+        <canvas tc-chartjs-bar chart-options="paymentOptions" height="300" chart-data="paymentData"></canvas>
+    </div>
+
+    <div class="col-xs-12">
+        <h2 translate>metricsActiveUserHeadline</h2>
+    </div>
+    <div class="col-xs-11 chart">
+        <canvas tc-chartjs-bar chart-options="activeUserOptions" height="300" chart-data="activeUserData"></canvas>
+    </div>
+
+    <div class="col-xs-12">
+        <h2 translate>metricsTransactionsHeadline</h2>
+    </div>
+    <div class="col-xs-11 chart">
+        <canvas tc-chartjs-bar chart-options="transactionOptions" height="300" chart-data="transactionData"></canvas>
+    </div>
+</div>

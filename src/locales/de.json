@@ -21,5 +21,18 @@
     "previousPage": "Vorherige",
     "lastPage": "Letzte",
     "firstPage": "Erste",
-    "showAll": "Alle Anzeigen"
+    "showAll": "Alle Anzeigen",
+    "metrics": "Statistiken",
+    "metricsOverviewHeadline": "Übersicht",
+    "metricsUsersLabel": "Benutzer",
+    "metricsTransactionsLabel": "Transaktionen",
+    "metricsSystemBalanceLabel": "Bilanz",
+    "metricsAverageBalanceLabel": "Durchschn. Guthaben",
+    "metricsChartIncomeHeadline": "Einnahmen vs. Ausgaben",
+    "metricsActiveUserHeadline": "Aktive Benutzer",
+    "metricsActiveUserLabel": "{{number}} Benutzer",
+    "metricsTransactionsHeadline": "Transaktionen",
+    "metricsTransactionLabel": "{{number}} Trans.",
+    "credits": "strichliste-web (MIT License, von <a href=\"https://github.com/zaphod1984\">zaphod1984</a> und <a href=\"https://github.com/schinken\">schinken</a>)",
+    "codeAt": "<a href=\"https://github.com/hackerspace-bootstrap/\">code @ github</a>"
 }
