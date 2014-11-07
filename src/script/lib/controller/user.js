@@ -1,9 +1,15 @@
 var settings = require('../settings');
 
 module.exports.install = function(app) {
-    app.controller('UserController', function ($scope, $routeParams, $timeout, messageService, locationService, transactionService, userService) {
+    app.controller('UserController', function ($scope, $routeParams, $timeout, messageService, locationService,
+                                               transactionService, userService, audioService) {
 
         var balanceElement = angular.element('.account-balance');
+
+        var audio = null;
+        if(settings.audio.transaction) {
+            audio = audioService.createBufferdAudioObject(settings.audio.transaction);
+        }
 
         function loadUser() {
             userService
@@ -30,8 +36,7 @@ module.exports.install = function(app) {
 
         $scope.transactionClick = function(value) {
 
-            if(settings.audio.transaction) {
-                var audio = new Audio(settings.audio.transaction);
+            if(audio) {
                 audio.play();
             }
 

@@ -11,6 +11,7 @@ var locationService = require('./lib/services/location');
 var transactionService = require('./lib/services/transaction');
 var messageService = require('./lib/services/message');
 var metricsService = require('./lib/services/metrics');
+var audioService = require('./lib/services/audio');
 
 var settings = require('./lib/settings');
 
@@ -95,3 +96,4 @@ locationService.install(app);
 transactionService.install(app);
 messageService.install(app);
 metricsService.install(app);
+audioService.install(app);
