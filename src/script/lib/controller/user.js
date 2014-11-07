@@ -6,11 +6,6 @@ module.exports.install = function(app) {
 
         var balanceElement = angular.element('.account-balance');
 
-        var audio = null;
-        if(settings.audio.transaction) {
-            audio = audioService.createBufferdAudioObject(settings.audio.transaction);
-        }
-
         function loadUser() {
             userService
                 .getUser($routeParams.user_id)
@@ -36,8 +31,8 @@ module.exports.install = function(app) {
 
         $scope.transactionClick = function(value) {
 
-            if(audio) {
-                audio.play();
+            if(settings.audio.transaction) {
+                audioService.play(settings.audio.transaction);
             }
 
             balanceElement.addClass((value > 0)? 'change-positive' : 'change-negative');

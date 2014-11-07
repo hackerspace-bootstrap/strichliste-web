@@ -61,6 +61,14 @@ var app = angular.module('strichliste', ['ngRoute', 'ngIdle', 'pascalprecht.tran
 
     })
 
+    .run(function(audioService) {
+        angular.forEach(settings.audio, function(audio) {
+            if(audio) {
+                audioService.prefetch(audio);
+            }
+        });
+    })
+
    .run(function($rootScope) {
          $rootScope.currency = settings.currency;
    });
