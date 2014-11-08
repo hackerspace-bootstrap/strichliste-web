@@ -4,8 +4,6 @@ module.exports.install = function(app) {
     app.controller('UserController', function ($scope, $routeParams, $timeout, messageService, locationService,
                                                transactionService, userService, audioService) {
 
-        var balanceElement = angular.element('.account-balance');
-
         function loadUser() {
             userService
                 .getUser($routeParams.user_id)
@@ -35,6 +33,7 @@ module.exports.install = function(app) {
                 audioService.play(settings.audio.transaction);
             }
 
+            var balanceElement = angular.element('.account-balance');
             balanceElement.addClass((value > 0)? 'change-positive' : 'change-negative');
 
             $timeout(function() {
