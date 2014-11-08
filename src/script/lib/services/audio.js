@@ -1,38 +1,40 @@
 var angular = require('../../lib/angular');
 
+var context = new (window.AudioContext || window.webkitAudioContext)();
+
 function AudioService() {
 
     this.prefetchedAudioObjects = {};
 
     this.prefetch = function(filename) {
 
-        var audio = new Audio(filename);
-        audio.preload = 'auto';
+        var that = this;
+        var request = new XMLHttpRequest();
 
-        this.prefetchedAudioObjects[filename] = audio;
+        request.open("GET", filename, true);
+        request.responseType = 'arraybuffer';
 
-        return audio;
-    };
+        request.onload = function() {
+            context.decodeAudioData(request.response, function(buffer) {
+                that.prefetchedAudioObjects[filename] = buffer;
+            });
+        };
 
-    this.getPrefetchedAudio = function(filename) {
-
-        if(this.prefetchedAudioObjects[filename]) {
-            return this.prefetchedAudioObjects[filename];
-        }
-
-        return false;
+        request.send();
     };
 
     this.play = function(filename) {
+        var source = context.createBufferSource();
 
-        var audio = this.getPrefetchedAudio(filename);
-        if(audio == false) {
-            audio = this.prefetch(filename);
+        source.buffer = this.prefetchedAudioObjects[filename];
+        source.connect(context.destination);
+
+        if(source.start) {
+            source.start(0);
+        } else {
+            source.noteOn(0);
         }
-
-        return audio.cloneNode().play();
     };
-
 }
 
 module.exports.install = function (app) {
