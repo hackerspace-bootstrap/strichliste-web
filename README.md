@@ -15,6 +15,16 @@ Checkout out the [demo](http://demo.hackerspace-bootstrap.org/strichliste-web/)!
 $ git clone git@github.com:hackerspace-bootstrap/strichliste-web.git
 ````
 
+### configuration
+
+**Before** building a production build, you should look at the configuration. One can find it here:
+
+````
+src/script/lib/settings.js
+````
+
+Changes on the configuration needs a rebuild to take affect.
+
 ### make production build
 
 To create a production build where sources are minified set the environment to `production`:
