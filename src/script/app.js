@@ -1,17 +1,6 @@
 var angular = require('./lib/angular');
-
-var indexController = require('./lib/controller/index');
-var userController = require('./lib/controller/user');
-var createUserController = require('./lib/controller/createUser');
-var transactionController = require('./lib/controller/transaction');
-var metricsController = require('./lib/controller/metrics');
-
-var userService = require('./lib/services/user');
-var locationService = require('./lib/services/location');
-var transactionService = require('./lib/services/transaction');
-var messageService = require('./lib/services/message');
-var metricsService = require('./lib/services/metrics');
-var audioService = require('./lib/services/audio');
+var controllerSetup = require('./lib/controller/setup');
+var serviceSetup = require('./lib/services/setup');
 
 var settings = require('./lib/settings');
 
@@ -93,15 +82,5 @@ if(settings.idleTimeout) {
         });
 }
 
-indexController.install(app);
-userController.install(app);
-createUserController.install(app);
-transactionController.install(app);
-metricsController.install(app);
-
-userService.install(app);
-locationService.install(app);
-transactionService.install(app);
-messageService.install(app);
-metricsService.install(app);
-audioService.install(app);
+controllerSetup.install(app);
+serviceSetup.install(app);
