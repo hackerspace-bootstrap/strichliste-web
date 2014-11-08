@@ -16,6 +16,5 @@ module.exports.install = function(app) {
                 });
         };
 
-        angular.element('.form-input-name').trigger('focus');
     });
 };
