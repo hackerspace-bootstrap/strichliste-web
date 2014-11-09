@@ -45,8 +45,6 @@ module.exports.install = function(app) {
                 value *= -1;
             }
 
-            console.log(value);
-
             transactionService
                 .createTransaction($routeParams.user_id, value)
                 .success(function() {
