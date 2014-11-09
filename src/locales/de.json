@@ -12,11 +12,13 @@
     "createUserInputPlaceholder": "Dein Benutzername",
     "createUserExists": "Benutzer „{{name}}” existiert bereits",
     "back": "Zurück",
+    "cancel": "Abbrechen",
     "uncaughtError": "Ein unbehandelter Fehler ist aufgetreten: {{message}}",
     "transactionForUser": "Transaktionsübersicht für „{{name}}”",
     "transactionCurrentPage": "Seite {{current}}/{{max}}",
     "transactionCreateDate": "Buchungsdatum",
     "transactionValue": "Wert",
+    "transactionBoundaryReached": "Die Transaction hat die Ober- oder Untergrenze überschritten.",
     "nextPage": "Nächste",
     "previousPage": "Vorherige",
     "lastPage": "Letzte",
@@ -34,5 +36,11 @@
     "metricsTransactionsHeadline": "Transaktionen",
     "metricsTransactionLabel": "{{number}} Trans.",
     "credits": "strichliste-web (MIT License, von <a href=\"https://github.com/zaphod1984\">zaphod1984</a> und <a href=\"https://github.com/schinken\">schinken</a>)",
-    "codeAt": "<a href=\"https://github.com/hackerspace-bootstrap/\">code @ github</a>"
+    "codeAt": "<a href=\"https://github.com/hackerspace-bootstrap/\">code @ github</a>",
+    "customTransactionHeadline": "Wunschbetrag",
+    "customTransactionDescription": "Gib hier deinen Wunschbetrag ein:",
+    "customTransactionPay": "Einkauf bezahlen",
+    "customTransactionCharge": "Guthaben aufladen",
+    "customTransactionValueInvalid": "Deine Eingabe enthält ungültige Zeichen",
+    "customTransactionValueTooSmall": "Eine Transaktion kann nicht kleiner als 0.01 {{currency}} sein."
 }

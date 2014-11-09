@@ -2,16 +2,16 @@ var settings = require('../settings');
 
 module.exports.install = function(app) {
     app.controller('UserController', function ($scope, $routeParams, $timeout, messageService, locationService,
-                                               transactionService, userService, audioService) {
+                                               transactionService, userService, $modal, audioService) {
 
         function loadUser() {
             userService
                 .getUser($routeParams.user_id)
-                .success(function(user) {
+                .success(function (user) {
                     $scope.user = user;
                 })
-                .error(function(body, httpCode) {
-                    if(httpCode == 404) {
+                .error(function (body, httpCode) {
+                    if (httpCode == 404) {
                         return messageService.error('userDoesNotExist');
                     }
 
@@ -54,9 +54,30 @@ module.exports.install = function(app) {
                 });
         };
 
-        $scope.depositSteps = settings.paymentSteps.deposit;
-        $scope.dispenseSteps = settings.paymentSteps.dispense;
-        $scope.audio = settings.audio;
+        $scope.customTransactionClick = function(transactionMode) {
+
+
+            var modalInstance = $modal.open({
+                templateUrl: 'partials/customTransaction.html',
+                controller: 'CustomTransactionController',
+                resolve: {
+                    transactionMode: function(){
+                        return transactionMode;
+                    }
+                }
+            });
+        };
+
+        var depositSteps = settings.paymentSteps.deposit;
+        var dispenseSteps = settings.paymentSteps.dispense;
+        if(settings.paymentSteps.customTransactions) {
+            depositSteps = depositSteps.slice(0, 4);
+            dispenseSteps = dispenseSteps.slice(0, 4);
+            $scope.customTransactions = true;
+        }
+
+        $scope.depositSteps = depositSteps;
+        $scope.dispenseSteps = dispenseSteps;
 
 
         loadUser();
