@@ -31,7 +31,7 @@ module.exports.install = function(app) {
                 return messageService.error('customTransactionValueInvalid');
             }
 
-            value = parseFloat(value);
+            value = parseFloat(value).toFixed(2);
 
             if(value < 0.01) {
                 return messageService.error('customTransactionValueTooSmall', {
