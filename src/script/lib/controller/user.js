@@ -56,7 +56,6 @@ module.exports.install = function(app) {
 
         $scope.customTransactionClick = function(transactionMode) {
 
-
             var modalInstance = $modal.open({
                 templateUrl: 'partials/customTransaction.html',
                 controller: 'CustomTransactionController',
@@ -68,17 +67,14 @@ module.exports.install = function(app) {
             });
         };
 
-        var depositSteps = settings.paymentSteps.deposit;
-        var dispenseSteps = settings.paymentSteps.dispense;
         if(settings.paymentSteps.customTransactions) {
-            depositSteps = depositSteps.slice(0, 4);
-            dispenseSteps = dispenseSteps.slice(0, 4);
+            $scope.depositSteps = settings.paymentSteps.deposit.slice(0, 4);
+            $scope.dispenseSteps = settings.paymentSteps.dispense.slice(0, 4);
             $scope.customTransactions = true;
+        } else {
+            $scope.depositSteps = settings.paymentSteps.deposit;
+            $scope.dispenseSteps = settings.paymentSteps.dispense;
         }
-
-        $scope.depositSteps = depositSteps;
-        $scope.dispenseSteps = dispenseSteps;
-
 
         loadUser();
     });
