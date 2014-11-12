@@ -18,7 +18,7 @@
     "transactionCurrentPage": "Seite {{current}}/{{max}}",
     "transactionCreateDate": "Buchungsdatum",
     "transactionValue": "Wert",
-    "transactionBoundaryReached": "Die Transaction hat die Ober- oder Untergrenze überschritten.",
+    "transactionBoundaryReached": "Die Transaktion hat die Ober- oder Untergrenze überschritten.",
     "nextPage": "Nächste",
     "previousPage": "Vorherige",
     "lastPage": "Letzte",
