@@ -2,7 +2,6 @@ var ms = require('ms');
 
 module.exports = {
     server: 'http://localhost:8080',
-    currency: "€",
     inactiveUserPeriod: ms('30d'),
     idleTimeout: ms('30s'),
     audio: {
@@ -16,6 +15,7 @@ module.exports = {
     i18n: {
         dateFormat: 'YYYY-MM-DD HH:mm:ss',
         timezone: 'auto',
-        preferredLanguage: 'en'
+        preferredLanguage: 'en',
+        currency: "€"
     }
 };

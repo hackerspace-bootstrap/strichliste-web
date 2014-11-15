@@ -65,7 +65,7 @@ module.exports.install = function(app) {
 
             barShowStroke : false,
 
-            scaleLabel: "<%=value%> " + settings.currency
+            scaleLabel: "<%=value%> " + settings.i18n.currency
         };
 
 

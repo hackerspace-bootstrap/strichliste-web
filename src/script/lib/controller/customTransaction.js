@@ -35,7 +35,7 @@ module.exports.install = function(app) {
 
             if(value < 0.01) {
                 return messageService.error('customTransactionValueTooSmall', {
-                    currency: $rootScope.currency
+                    currency: settings.i18n.currency
                 });
             }
 

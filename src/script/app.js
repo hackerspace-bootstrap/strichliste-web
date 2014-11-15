@@ -60,7 +60,7 @@ var app = angular.module('strichliste', ['ngRoute', 'ngIdle', 'pascalprecht.tran
     })
 
    .run(function($rootScope) {
-         $rootScope.currency = settings.currency;
+         $rootScope.currency = settings.i18n.currency;
    });
 
 
