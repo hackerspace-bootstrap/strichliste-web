@@ -6,7 +6,7 @@ var merge = require('merge-stream');
 var order = require('gulp-order');
 var less = require('gulp-less');
 var sequence = require('run-sequence');
-var ngannotate = require('gulp-ng-annotate');
+var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 var cssmin = require('gulp-minify-css');
 var gulpIf = require('gulp-if');
@@ -112,6 +112,8 @@ gulp.task('scripts_app', function () {
     return gulp
         .src(SOURCE_DIR + '/script/app.js')
         .pipe(browserify()).on('error', gutil.log)
+        .pipe(ngAnnotate())
+        .pipe(gulpIf(isProduction, uglify()))
         .pipe(gulp.dest(TARGET_DIR + '/js'));
 });
 
