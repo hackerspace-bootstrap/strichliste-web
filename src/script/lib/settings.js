@@ -15,6 +15,7 @@ module.exports = {
     },
     i18n: {
         dateFormat: 'YYYY-MM-DD HH:mm:ss',
+        timezone: 'auto',
         preferredLanguage: 'en'
     }
 };

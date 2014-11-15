@@ -1,9 +1,17 @@
 var settings = require('../settings');
+require('moment-timezone');
+
 var moment = require('moment');
 
 function localtimeFilter() {
     return function(input) {
-        return moment.utc(input).local().format(settings.i18n.dateFormat);
+        var result = moment.utc(input).local();
+
+        if(settings.i18n.timezone != 'auto') {
+            result.tz(settings.i18n.timezone);
+        }
+
+        return result.format(settings.i18n.dateFormat);
     };
 }
 

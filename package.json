@@ -53,6 +53,7 @@
     "express": "^4.6.1",
     "figlet": "^1.1.0",
     "moment": "^2.8.3",
+    "moment-timezone": "^0.2.5",
     "ms": "^0.6.2",
     "yargs": "^1.2.6"
   }
