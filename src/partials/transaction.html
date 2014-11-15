@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="transaction in transactions | orderBy:'-id'">
-                    <td>{{transaction.createDate}}</td>
+                    <td>{{transaction.createDate | localtime}}</td>
                     <td class="balance" ng-class="transaction.value < 0 ? 'negative' : ''">{{transaction.value|number:2}} €</td>
                 </tr>
             </tbody>

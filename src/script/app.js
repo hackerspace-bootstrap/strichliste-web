@@ -1,6 +1,7 @@
 var angular = require('./lib/angular');
 var controllerSetup = require('./lib/controller/setup');
 var serviceSetup = require('./lib/services/setup');
+var filterSetup = require('./lib/filter/setup');
 
 var settings = require('./lib/settings');
 
@@ -44,8 +45,8 @@ var app = angular.module('strichliste', ['ngRoute', 'ngIdle', 'pascalprecht.tran
             })
             .fallbackLanguage('en');
 
-        if(settings.preferredLanguage) {
-            $translateProvider.preferredLanguage(settings.preferredLanguage)
+        if(settings.i18n.preferredLanguage) {
+            $translateProvider.preferredLanguage(settings.i18n.preferredLanguage)
         }
 
     })
@@ -84,3 +85,4 @@ if(settings.idleTimeout) {
 
 controllerSetup.install(app);
 serviceSetup.install(app);
+filterSetup.install(app);
