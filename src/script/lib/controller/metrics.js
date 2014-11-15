@@ -8,7 +8,6 @@ module.exports.install = function(app) {
             .getMetrics()
             .success(function(metrics) {
                 $scope.metrics = metrics;
-                console.log(metrics);
                 initChartData(metrics);
             })
             .error(function(body, httpCode) {
