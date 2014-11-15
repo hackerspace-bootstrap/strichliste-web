@@ -112,7 +112,7 @@ gulp.task('scripts_app', function () {
     return gulp
         .src(SOURCE_DIR + '/script/app.js')
         .pipe(browserify()).on('error', gutil.log)
-        .pipe(ngAnnotate())
+        .pipe(gulpIf(isProduction, ngAnnotate()))
         .pipe(gulpIf(isProduction, uglify()))
         .pipe(gulp.dest(TARGET_DIR + '/js'));
 });
