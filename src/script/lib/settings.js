@@ -47,6 +47,8 @@ module.exports = {
         dateFormat: 'YYYY-MM-DD HH:mm:ss',
 
         // the timezone in which the date is shown [auto=browser locale]
+        // Possible value might be 'Europe/Berlin'. For a full list
+        // visit: https://github.com/moment/moment-timezone/blob/develop/data/meta/latest.json
         timezone: 'auto',
 
         // preferred language of strichliste
