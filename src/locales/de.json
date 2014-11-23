@@ -13,6 +13,7 @@
     "createUserExists": "Benutzer „{{name}}” existiert bereits",
     "back": "Zurück",
     "cancel": "Abbrechen",
+    "errorLoadingAudio": "Die Audio-Datei „{{filename}}” konnte nicht geladen werden",
     "uncaughtError": "Ein unbehandelter Fehler ist aufgetreten: {{message}}",
     "transactionForUser": "Transaktionsübersicht für „{{name}}”",
     "transactionCurrentPage": "Seite {{current}}/{{max}}",

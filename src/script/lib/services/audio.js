@@ -2,7 +2,7 @@ var angular = require('../../lib/angular');
 
 var context = new (window.AudioContext || window.webkitAudioContext)();
 
-function AudioService($http) {
+function AudioService($http, messageService) {
 
     this.prefetchedAudioObjects = {};
 
@@ -18,10 +18,20 @@ function AudioService($http) {
                 context.decodeAudioData(data, function(buffer) {
                     that.prefetchedAudioObjects[filename] = buffer;
                 });
+            })
+            .error(function() {
+                messageService.error('errorLoadingAudio', {
+                    filename: filename
+                });
             });
     };
 
     this.play = function(filename) {
+
+        if(!this.prefetchedAudioObjects[filename]) {
+            return false;
+        }
+        
         var source = context.createBufferSource();
 
         source.buffer = this.prefetchedAudioObjects[filename];
