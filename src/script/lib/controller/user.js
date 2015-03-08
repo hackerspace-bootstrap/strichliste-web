@@ -36,10 +36,12 @@ module.exports.install = function(app) {
             var balanceElement = angular.element('.account-balance');
             balanceElement.addClass((value > 0)? 'change-positive' : 'change-negative');
 
+            $scope.transactionRunning = true;
             $scope.user.balance += value;
 
             $timeout(function() {
                 balanceElement.removeClass('change-positive change-negative');
+                $scope.transactionRunning = false;
             }, 800);
 
             transactionService

@@ -12,14 +12,14 @@
         <div class="col-xs-6 credit">
             <div class="charge-wallet">
                 <h3 translate>userChargeWallet</h3>
-                <button class="btn btn-success btn-lg" ng-click="transactionClick(step)" ng-repeat="step in depositSteps">{{step | number:2}} {{currency}}</button>
-                <button class="btn btn-success btn-lg" ng-click="customTransactionClick('charge')" ng-if="customTransactions">? {{currency}}</button>
+                <button class="btn btn-success btn-lg" ng-disabled="transactionRunning" ng-click="transactionClick(step)" ng-repeat="step in depositSteps">{{step | number:2}} {{currency}}</button>
+                <button class="btn btn-success btn-lg" ng-disabled="transactionRunning" ng-click="customTransactionClick('charge')" ng-if="customTransactions">? {{currency}}</button>
             </div>
 
             <div class="pay">
                 <h3 translate>userSpendMoney</h3>
-                <button class="btn btn-primary btn-lg" ng-click="transactionClick(step*-1)" ng-repeat="step in dispenseSteps">{{step | number:2}} {{currency}}</button>
-                <button class="btn btn-primary btn-lg" ng-click="customTransactionClick('spend')" ng-if="customTransactions">? {{currency}}</button>
+                <button class="btn btn-primary btn-lg" ng-disabled="transactionRunning" ng-click="transactionClick(step*-1)" ng-repeat="step in dispenseSteps">{{step | number:2}} {{currency}}</button>
+                <button class="btn btn-primary btn-lg" ng-disabled="transactionRunning" ng-click="customTransactionClick('spend')" ng-if="customTransactions">? {{currency}}</button>
             </div>
         </div>
 
