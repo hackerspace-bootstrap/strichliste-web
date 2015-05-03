@@ -45,3 +45,11 @@ $ make development
 ````
 
 To access the development version visit [http://localhost:8081](http://localhost:8081)
+
+## user
+
+* [Hackerspace Bamberg - backspace e.V.](https://www.hackerspace-bamberg.de)
+* [hackzogtum Coburg](http://www.hackzogtum.de/)
+* [Nerd2Nerd](https://www.nerd2nerd.org/)
+
+If your hackerspace is missing, just send a mail to schinken@hackerspace-bamberg.de
