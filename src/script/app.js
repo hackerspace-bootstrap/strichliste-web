@@ -66,15 +66,17 @@ var app = angular.module('strichliste', ['ngRoute', 'ngIdle', 'pascalprecht.tran
 
 if(settings.idleTimeout) {
     app
-        .config(function($idleProvider) {
-            $idleProvider.idleDuration(Math.ceil(settings.idleTimeout/1000));
-            $idleProvider.warningDuration(1);
+        .config(function(IdleProvider) {
+            IdleProvider.idle(Math.ceil(settings.idleTimeout/1000));
+            IdleProvider.timeout(false);
         })
-        .run(function($rootScope, $idle, $location, locationService) {
+        .run(function($rootScope, Idle, $location, locationService) {
 
-            $idle.watch();
+            Idle.watch();
 
-            $rootScope.$on('$idleTimeout', function() {
+            $rootScope.$on('IdleStart', function() {
+                console.log("IdleStart");
+
                 if($location.path() != '/') {
                     locationService.gotoHome();
                 }
