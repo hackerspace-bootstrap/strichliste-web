@@ -81,7 +81,7 @@ gulp.task('style', ['bower_components'], function () {
     return gulp
         .src(bowerComponents.css)
         .pipe(concat('external.css'))
-        .pipe(gulpIf(isProduction, cssmin()))
+        .pipe(gulpIf(isProduction, cssmin({ processImport: false  })))
         .pipe(gulp.dest(TARGET_DIR + '/css/'))
         .pipe(cssFilter.restore());
 });
