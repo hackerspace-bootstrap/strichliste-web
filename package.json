@@ -1,6 +1,6 @@
 {
   "name": "strichliste-web",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "web frontend for the strichliste app",
   "main": "devServer.js",
   "scripts": {
@@ -37,7 +37,7 @@
     "gulp-filter": "^1.0.2",
     "gulp-if": "^1.2.5",
     "gulp-less": "^1.3.6",
-    "gulp-minify-css": "^0.3.11",
+    "gulp-minify-css": "^1.1.1",
     "gulp-minify-html": "^0.1.6",
     "gulp-ng-annotate": "^0.3.5",
     "gulp-order": "^1.1.1",
