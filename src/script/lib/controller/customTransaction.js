@@ -2,6 +2,7 @@ var settings = require('../settings');
 
 module.exports.install = function(app) {
     app.controller('CustomTransactionController', function ($scope, $rootScope, $routeParams, $modalInstance, $route,
+                                                            $timeout,
                                                             locationService, messageService, audioService,
                                                             transactionService, transactionMode, settingsService,
                                                             userService) {
@@ -70,6 +71,10 @@ module.exports.install = function(app) {
                     return messageService.httpError(body, httpCode);
                 });
         };
+
+        $timeout(function() {
+            angular.element('input.transaction-value').focus();
+        }, 400);
 
 
     });
