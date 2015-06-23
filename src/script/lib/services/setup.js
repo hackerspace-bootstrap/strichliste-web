@@ -4,6 +4,7 @@ var transactionService = require('./transaction');
 var messageService = require('./message');
 var metricsService = require('./metrics');
 var audioService = require('./audio');
+var settingsService = require('./settings');
 
 function install(app) {
     userService.install(app);
@@ -12,6 +13,7 @@ function install(app) {
     messageService.install(app);
     metricsService.install(app);
     audioService.install(app);
+    settingsService.install(app);
 }
 
 module.exports.install = install;

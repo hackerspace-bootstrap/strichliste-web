@@ -3,7 +3,8 @@ var settings = require('../settings');
 module.exports.install = function(app) {
     app.controller('CustomTransactionController', function ($scope, $rootScope, $routeParams, $modalInstance, $route,
                                                             locationService, messageService, audioService,
-                                                            transactionService, transactionMode) {
+                                                            transactionService, transactionMode, settingsService,
+                                                            userService) {
 
         // Because of some scope issues, we need to initialize the substructure
         $scope.transactionMode = transactionMode;
@@ -19,6 +20,16 @@ module.exports.install = function(app) {
         function isValidNumber(value) {
             return !isNaN(parseFloat(value)) && isFinite(value);
         }
+
+        userService
+            .getUser($routeParams.user_id)
+            .success(function (user) {
+                $scope.user = user;
+            });
+
+        settingsService.getUserBoundaries().then(function(result) {
+            $scope.boundary = result;
+        });
 
         $scope.submitTransaction = function(value) {
 

@@ -4,6 +4,12 @@
 <div class="modal-body">
     <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
+    <alert ng-if="transactionMode == 'spend' && boundary.exceedsLowerLimit(user.balance - transactionValue) ||
+                  transactionMode == 'charge' && boundary.exceedsLowerLimit(user.balance + transactionValue)"
+           type="alert.type">
+        <span translate>transactionBoundaryReached</span>
+    </alert>
+
     <p translate>customTransactionDescription</p>
     <form ng-submit="submitTransaction(transactionValue)">
         <div class="input-group input-group-lg">
@@ -15,9 +21,13 @@
 
 </div>
 <div class="modal-footer">
-    <button class="btn btn-lg btn-primary" ng-click="submitTransaction(transactionValue)"
+    <button class="btn btn-lg btn-primary"
+            ng-disabled="boundary.exceedsLowerLimit(user.balance - transactionValue)"
+            ng-click="submitTransaction(transactionValue)"
             ng-if="transactionMode == 'spend'" translate>customTransactionPay</button>
-    <button class="btn btn-lg btn-success" ng-click="submitTransaction(transactionValue)"
+    <button class="btn btn-lg btn-success"
+            ng-disabled="boundary.exceedsLowerLimit(user.balance + transactionValue)"
+            ng-click="submitTransaction(transactionValue)"
             ng-if="transactionMode == 'charge'" translate>customTransactionCharge</button>
     <button class="btn btn-lg btn-default" ng-click="cancel()" translate>cancel</button>
 </div>

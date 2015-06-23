@@ -2,7 +2,8 @@ var settings = require('../settings');
 
 module.exports.install = function(app) {
     app.controller('UserController', function ($scope, $routeParams, $timeout, messageService, locationService,
-                                               transactionService, userService, $modal, audioService) {
+                                               transactionService, userService, $modal, audioService,
+                                               settingsService) {
 
         function loadUser() {
             userService
@@ -18,6 +19,10 @@ module.exports.install = function(app) {
                     return messageService.httpError(body, httpCode);
                 });
         }
+
+        settingsService.getUserBoundaries().then(function(result) {
+            $scope.boundary = result;
+        });
 
         $scope.backClick = function() {
             locationService.gotoHome();
