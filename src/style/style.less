@@ -27,7 +27,7 @@
   list-style-type: none;
 
   li {
-    margin: 0 21px 21px 0;
+    margin: 0 20px 20px 0;
 
     width: 157px;
     height: 100px;
@@ -73,7 +73,8 @@ button.back {
 }
 
 .balance, .account-balance {
-  -webkit-transition: all 0.5s ease-in;
+  -webkit-transition: color 0.5s ease-in,
+                      font-size 0.5s ease-in;
 
   &.change-negative, &.change-positive {
     letter-spacing: 2px;
@@ -83,21 +84,17 @@ button.back {
 }
 
 .user {
-  position: relative;
 
   .account-balance {
-    position: absolute;
-    top: -4px;
-    right: 13px;
-
+    text-align: right;
     font-size: 72px;
   }
 
   .credit {
     .btn {
-      width: 18%;
-      font-size: 110%;
+      min-width: 110px;
       margin-right: 6px;
+      margin-bottom: 6px;
     }
   }
 
@@ -105,9 +102,6 @@ button.back {
     margin-top: 42px;
   }
 
-  .pay {
-    margin-top: 48px;
-  }
 }
 
 .pagination {
