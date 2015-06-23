@@ -34,7 +34,7 @@ module.exports = {
         dispense: [0.50, 1.00, 1.50, 2.00, 0.70],
 
         // enables custom transactions. If enabled, payment steps are reduced
-        // to only 5 steps
+        // to only 4 steps
         customTransactions: true
     },
 
