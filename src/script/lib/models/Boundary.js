@@ -1,7 +1,7 @@
 
 function Boundary(lower, upper) {
-    this.lower = lower;
-    this.upper = upper;
+    this.lower = (lower == null)? -Infinity : lower;
+    this.upper = (upper == null)? Infinity : upper;
 }
 
 Boundary.prototype.exceedsUpperLimit = function(value) {
