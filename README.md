@@ -2,7 +2,7 @@
 
 ## demo
 
-Checkout out the [demo](http://demo.hackerspace-bootstrap.org/strichliste-web/)!
+Checkout out the [demo](http://demo.strichliste.org/)!
 
 ## requirements
 
