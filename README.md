@@ -51,5 +51,6 @@ To access the development version visit [http://localhost:8081](http://localhost
 * [Hackerspace Bamberg - backspace e.V.](https://www.hackerspace-bamberg.de)
 * [hackzogtum Coburg](http://www.hackzogtum.de/)
 * [Nerd2Nerd](https://www.nerd2nerd.org/)
+* [Hackerspace Bremen](https://www.hackerspace-bremen.de/)
 
 If your hackerspace is missing, just send a mail to schinken@hackerspace-bamberg.de
