@@ -56,7 +56,7 @@ module.exports.install = function(app) {
 
         // Chart.js Options
         $scope.chartOptions =  {
-            animation: true,
+            animation: false,
             maintainAspectRatio: false,
             responsive: true,
 
