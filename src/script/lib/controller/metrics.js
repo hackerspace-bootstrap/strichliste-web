@@ -14,44 +14,49 @@ module.exports.install = function(app) {
                 return messageService.httpError(body, httpCode);
             });
 
+        function formatNumber(num) {
+            return Math.round(num * 100) / 100;
+        }
+
         function initChartData(metrics) {
 
             var spent = [], income = [], labels = [], users = [], transactions = [];
 
             metrics.days.forEach(function(day, index) {
-                spent.push(day.dayBalanceNegative*-1);
-                income.push(day.dayBalancePositive);
+                spent.push(formatNumber(day.dayBalanceNegative*-1));
+                income.push(formatNumber(day.dayBalancePositive));
+
                 users.push(day.distinctUsers);
                 transactions.push(day.overallNumber);
+
                 labels.push(day.date);
             });
 
-            $scope.paymentData = {
+            $scope.payment = {
                 labels: labels,
-                datasets: [
-                    { label: 'Spent', fillColor: 'rgba(217,35,15,0.8)', data: spent },
-                    { label: 'Income', fillColor: 'rgba(15,217,72,0.8)', data: income }
-                ]
+                series: ['Spent', 'Income'],
+                colors: ['#d9230f', '#0fd948'],
+                data: [spent, income]
             };
 
-            $scope.activeUserData = {
+            $scope.activeUser = {
                 labels: labels,
-                datasets: [
-                    { label: 'Users', fillColor: 'rgba(255,162,0,0.8)', data: users }
-                ]
+                series: ['Users'],
+                colors: ['#ffa200'],
+                data: [users]
             };
 
-            $scope.transactionData = {
+            $scope.transaction = {
                 labels: labels,
-                datasets: [
-                    { label: 'Transactions', fillColor: 'rgba(0,156,255,0.8)', data: transactions }
-                ]
+                series: ['Transactions'],
+                colors: ['#00a5ff'],
+                data: [transactions]
             };
         }
 
         // Chart.js Options
-        var chartOptions =  {
-            animation: false,
+        $scope.chartOptions =  {
+            animation: true,
             maintainAspectRatio: false,
             responsive: true,
 
@@ -62,27 +67,9 @@ module.exports.install = function(app) {
             barValueSpacing : 3,
             barDatasetSpacing : 2,
 
-            barShowStroke : false,
-
-            scaleLabel: "<%=value%> " + settings.i18n.currency
+            barShowStroke : true,
+            barStrokeWidth: 1
         };
 
-
-        $scope.paymentOptions = chartOptions;
-
-        // This tmp-replace is a small "hack", because one can't deactivate the XSS-prevention for the
-        // $translate service call once
-
-        $translate('metricsActiveUserLabel', {number: 'tmp'}).then(function (result) {
-            $scope.activeUserOptions = angular.extend(angular.copy(chartOptions), {
-                scaleLabel: result.replace('tmp', '<%=value%>')
-            });
-        });
-
-        $translate('metricsTransactionLabel', {number: 'tmp'}).then(function (result) {
-            $scope.transactionOptions = angular.extend(angular.copy(chartOptions), {
-                scaleLabel: result.replace('tmp', '<%=value%>')
-            });
-        });
     });
 };

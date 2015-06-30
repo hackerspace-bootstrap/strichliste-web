@@ -26,22 +26,16 @@
 
     <div class="col-xs-12">
         <h2 translate>metricsChartIncomeHeadline</h2>
-    </div>
-    <div class="col-xs-11 chart">
-        <canvas tc-chartjs-bar chart-options="paymentOptions" height="300" chart-data="paymentData"></canvas>
+        <canvas id="payment" class="chart chart-bar" data="payment.data" labels="payment.labels" options="chartOptions" colours="payment.colors" height="300"></canvas>
     </div>
 
     <div class="col-xs-12">
         <h2 translate>metricsActiveUserHeadline</h2>
-    </div>
-    <div class="col-xs-11 chart">
-        <canvas tc-chartjs-bar chart-options="activeUserOptions" height="300" chart-data="activeUserData"></canvas>
+        <canvas id="activeUser" class="chart chart-bar" data="activeUser.data" labels="activeUser.labels" options="chartOptions" colours="activeUser.colors"></canvas>
     </div>
 
     <div class="col-xs-12">
         <h2 translate>metricsTransactionsHeadline</h2>
-    </div>
-    <div class="col-xs-11 chart">
-        <canvas tc-chartjs-bar chart-options="transactionOptions" height="300" chart-data="transactionData"></canvas>
+        <canvas id="transaction" class="chart chart-bar" data="transaction.data" labels="transaction.labels" options="chartOptions" colours="transaction.colors"></canvas>
     </div>
 </div>

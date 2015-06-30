@@ -5,7 +5,7 @@ var filterSetup = require('./lib/filter/setup');
 
 var settings = require('./lib/settings');
 
-var app = angular.module('strichliste', ['ngRoute', 'ngIdle', 'pascalprecht.translate', 'ui.bootstrap', 'tc.chartjs'])
+var app = angular.module('strichliste', ['ngRoute', 'ngIdle', 'pascalprecht.translate', 'ui.bootstrap', 'chart.js'])
 
     .config(function ($routeProvider) {
 
