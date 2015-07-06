@@ -5,9 +5,9 @@ module.exports.install = function(app) {
                                                transactionService, userService, $modal, audioService,
                                                settingsService) {
 
-        function loadUser() {
+        function loadUser(userId) {
             userService
-                .getUser($routeParams.user_id)
+                .getUser(userId)
                 .success(function (user) {
                     $scope.user = user;
                 })
@@ -52,7 +52,7 @@ module.exports.install = function(app) {
             transactionService
                 .createTransaction($routeParams.user_id, value)
                 .success(function() {
-                    loadUser();
+                    loadUser($routeParams.user_id);
                 })
                 .error(function(body, httpCode) {
                     if(httpCode == 403) {
@@ -85,6 +85,6 @@ module.exports.install = function(app) {
             $scope.dispenseSteps = settings.paymentSteps.dispense;
         }
 
-        loadUser();
+        loadUser($routeParams.user_id);
     });
 };
