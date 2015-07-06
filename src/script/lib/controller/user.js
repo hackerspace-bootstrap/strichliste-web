@@ -49,10 +49,11 @@ module.exports.install = function(app) {
                 $scope.transactionRunning = false;
             }, 800);
 
+            var userId = $routeParams.user_id;
             transactionService
-                .createTransaction($routeParams.user_id, value)
+                .createTransaction(userId, value)
                 .success(function() {
-                    loadUser($routeParams.user_id);
+                    loadUser(userId);
                 })
                 .error(function(body, httpCode) {
                     if(httpCode == 403) {
