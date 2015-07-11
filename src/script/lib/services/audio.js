@@ -1,12 +1,21 @@
 var angular = require('../../lib/angular');
 
-var context = new (window.AudioContext || window.webkitAudioContext)();
+var AudioContext = (window.AudioContext || window.webkitAudioContext);
+var context = null;
+
+if(AudioContext) {
+    context = new AudioContext();
+}
 
 function AudioService($http, messageService) {
 
     this.prefetchedAudioObjects = {};
 
     this.prefetch = function(filename) {
+
+        if(!context) {
+            return false;
+        }
 
         var that = this;
 
@@ -28,7 +37,7 @@ function AudioService($http, messageService) {
 
     this.play = function(filename) {
 
-        if(!this.prefetchedAudioObjects[filename]) {
+        if(!this.prefetchedAudioObjects[filename] || !context) {
             return false;
         }
         
