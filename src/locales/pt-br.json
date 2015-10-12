@@ -15,6 +15,7 @@
     "cancel": "Cancelar",
     "uncaughtError": "Erro não tratado: {{message}}",
     "errorLoadingAudio": "Falha ao carregar arquivo de áudio '{{filename}}'",
+    "errorLoadingSettings": "Erro ao carregar configuração do servidor. Talvez você esteja usando uma versão antiga do servidor",
     "transactionForUser": "Histórico do usuário '{{name}}'",
     "transactionCurrentPage": "Página {{current}}/{{max}}",
     "transactionCreateDate": "data de criação",
