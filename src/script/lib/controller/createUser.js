@@ -7,13 +7,13 @@ module.exports.install = function(app) {
 
             var name = $scope.name.replace(NON_PRINTABLE_UNICODE_CHARACTERS, '');
             userService
-                .createUser($scope.name)
+                .createUser(name)
                 .success(function() {
                     locationService.gotoHome();
                 })
                 .error(function(body, httpCode) {
                     if(httpCode == 409) {
-                        return messageService.error('createUserExists', {name: $scope.name});
+                        return messageService.error('createUserExists', {name: name});
                     }
 
                     return messageService.httpError(body, httpCode);
