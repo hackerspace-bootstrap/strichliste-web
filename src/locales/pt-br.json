@@ -37,7 +37,7 @@
     "metricsActiveUserLabel": "{{number}} usuário(s)",
     "metricsTransactionsHeadline": "transações",
     "metricsTransactionLabel": "{{number}} trans.",
-    "credits": "strichliste-web (MIT License, by <a href=\"https://github.com/zaphod1984\">zaphod1984</a> e <a href=\"https://github.com/schinken\">schinken</a>)",
+    "credits": "strichliste-web (MIT License, by <a href=\"https://github.com/seriousManual\">seriousManual</a> e <a href=\"https://github.com/schinken\">schinken</a>)",
     "codeAt": "<a href=\"https://github.com/hackerspace-bootstrap/\">code @ github</a>",
     "customTransactionHeadline": "Valor avulso",
     "customTransactionDescription": "Informe o valor avulso:",

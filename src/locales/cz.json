@@ -35,7 +35,7 @@
     "metricsActiveUserLabel": "{{number}} uživatelů",
     "metricsTransactionsHeadline": "Transakce",
     "metricsTransactionLabel": "{{number}} Trans.",
-    "credits": "strichliste-web (MIT License, von <a href=\"https://github.com/zaphod1984\">zaphod1984</a> a <a href=\"https://github.com/schinken\">schinken</a>)",
+    "credits": "strichliste-web (MIT License, von <a href=\"https://github.com/seriousManual\">seriousManual</a> a <a href=\"https://github.com/schinken\">schinken</a>)",
     "codeAt": "<a href=\"https://github.com/hackerspace-bootstrap/\">code @ github</a>",
     "customTransactionHeadline": "Požadovaná suma",
     "customTransactionDescription": "Zadej zde tvou požadovanou sumu:",

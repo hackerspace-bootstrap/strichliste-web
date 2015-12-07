@@ -35,7 +35,7 @@
     "metricsActiveUserLabel": "{{number}} Kullanıcılar",
     "metricsTransactionsHeadline": "İşlemler",
     "metricsTransactionLabel": "{{number}} İşlemler",
-    "credits": "strichliste-web (MIT Lisans, <a href=\"https://github.com/zaphod1984\">zaphod1984</a> ve <a href=\"https://github.com/schinken\">schinken</a>)",
+    "credits": "strichliste-web (MIT Lisans, <a href=\"https://github.com/seriousManual\">seriousManual</a> ve <a href=\"https://github.com/schinken\">schinken</a>)",
     "codeAt": "<a href=\"https://github.com/hackerspace-bootstrap/\">code @ github</a>",
     "customTransactionHeadline": "Miktar",
     "customTransactionDescription": "İstedigin Miktarı gir:",
