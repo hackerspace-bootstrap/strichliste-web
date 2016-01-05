@@ -1,0 +1,15 @@
+language: node_js
+addons:
+  apt:
+    packages:
+      - make
+script: make release
+deploy:
+  provider: releases
+  api_key:
+    secure: X6CtPnWhsVM/1mMMrU0Da45ny/b9uPbW1LeC+6v97LEMH9DGRwnCYe4l7/YIInjIgVFHDhIbalZUze3nQfokDABQ7HatJ9g7mVghTHODT8shavJ00l3amDKCyPelh+kcAGmPayIEqpr+QARkuBLYkTXSOidaqTHBBxbMsOdfRzU=
+  file: strichliste-web.tar.gz
+  on:
+    tags: true
+    branch: master
+    repo: hackerspace-bootstrap/strichliste-web
