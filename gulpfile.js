@@ -119,8 +119,15 @@ gulp.task('scripts_app', function () {
         .pipe(gulp.dest(TARGET_DIR + '/js'));
 });
 
+gulp.task('settings', function() {
+    return gulp
+        .src('settings.js')
+        .pipe(gulpIf(isProduction, uglify()))
+        .pipe(gulp.dest(TARGET_DIR + '/js'));
+});
+
 gulp.task('build', function (callback) {
-    sequence('clean', ['html', 'static', 'locales', 'images', 'style_app', 'scripts', 'style', 'scripts_app'], callback);
+    sequence('clean', ['html', 'static', 'locales', 'images', 'style_app', 'scripts', 'style', 'scripts_app'], 'settings', callback);
 });
 
 gulp.task('dev', ['build'], function (callback) {
@@ -131,6 +138,7 @@ gulp.task('dev', ['build'], function (callback) {
     gulp.watch(SOURCE_DIR + '/script/**/*.js', ['scripts_app']);
     gulp.watch(SOURCE_DIR + '/img/**/*', ['images']);
     gulp.watch(SOURCE_DIR + '/locales/*', ['locales']);
+    gulp.watch('settings.js', ['settings']);
 
     callback();
 });

@@ -15,16 +15,6 @@ Checkout out the [demo](http://demo.strichliste.org/)!
 $ git clone git@github.com:hackerspace-bootstrap/strichliste-web.git
 ````
 
-### configuration
-
-**Before** building a production build, you should look at the configuration. One can find it here:
-
-````
-src/script/lib/settings.js
-````
-
-Changes on the configuration needs a rebuild to take affect.
-
 ### make production build
 
 To create a production build where sources are minified set the environment to `production`:
@@ -32,6 +22,10 @@ To create a production build where sources are minified set the environment to `
 ````bash
 $ make production
 ````
+
+### configuration
+
+You can edit the settings in `build/js/settings.js` after a build, or `/settings.js` if you want the changes to persist a new build.
 
 ### development mode
 
@@ -43,6 +37,8 @@ It also starts an development server, listening on port `:8081`.
 ````bash
 $ make development
 ````
+
+Notice: In development mode, the `/settings.js` file will be automatically copied on change to `build/js/settings.js`
 
 To access the development version visit [http://localhost:8081](http://localhost:8081)
 

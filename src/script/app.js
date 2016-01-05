@@ -4,6 +4,7 @@ var serviceSetup = require('./lib/services/setup');
 var filterSetup = require('./lib/filter/setup');
 
 var settings = require('./lib/settings');
+var ms = require('ms');
 
 var app = angular.module('strichliste', ['ngRoute', 'ngIdle', 'pascalprecht.translate', 'ui.bootstrap', 'chart.js'])
 
@@ -67,7 +68,7 @@ var app = angular.module('strichliste', ['ngRoute', 'ngIdle', 'pascalprecht.tran
 if(settings.idleTimeout) {
     app
         .config(function(IdleProvider) {
-            IdleProvider.idle(Math.ceil(settings.idleTimeout/1000));
+            IdleProvider.idle(Math.ceil(ms(settings.idleTimeout)/1000));
             IdleProvider.timeout(false);
         })
         .run(function($rootScope, Idle, $location, locationService) {

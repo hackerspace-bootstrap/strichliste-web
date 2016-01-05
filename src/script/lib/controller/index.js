@@ -1,5 +1,6 @@
 var settings = require('../settings');
 var moment = require('moment');
+var ms = require('ms');
 
 function isActiveUser(user) {
 
@@ -7,7 +8,7 @@ function isActiveUser(user) {
         return false;
     }
 
-    return (moment().diff(moment(user.lastTransaction)) < settings.inactiveUserPeriod);
+    return (moment().diff(moment(user.lastTransaction)) < ms(settings.inactiveUserPeriod));
 }
 
 module.exports.install = function(app) {
