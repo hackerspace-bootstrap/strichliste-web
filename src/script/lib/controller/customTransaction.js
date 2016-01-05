@@ -78,6 +78,9 @@ module.exports.install = function(app) {
             angular.element('input.transaction-value').focus();
         }, 400);
 
+        $rootScope.$on('IdleStart', function() {
+            $modalInstance.close();
+        });
 
     });
 };
