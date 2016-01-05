@@ -23,6 +23,8 @@ To create a production build where sources are minified set the environment to `
 $ make production
 ````
 
+For this to work you need node.js installed on your system. 
+
 ### configuration
 
 You can edit the settings in `build/js/settings.js` after a build, or `/settings.js` if you want the changes to persist a new build.
