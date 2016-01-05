@@ -2,3 +2,4 @@
 node_modules
 strichliste-web
 bower_components
+*.tar.gz
