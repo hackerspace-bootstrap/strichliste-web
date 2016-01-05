@@ -7,6 +7,8 @@ module.exports.install = function(app) {
                                                             transactionService, transactionMode, settingsService,
                                                             userService) {
 
+        var userId = $routeParams.user_id;
+
         // Because of some scope issues, we need to initialize the substructure
         $scope.transactionMode = transactionMode;
 
@@ -23,7 +25,7 @@ module.exports.install = function(app) {
         }
 
         userService
-            .getUser($routeParams.user_id)
+            .getUser(userId)
             .success(function (user) {
                 $scope.user = user;
             });
@@ -58,7 +60,7 @@ module.exports.install = function(app) {
             }
 
             transactionService
-                .createTransaction($routeParams.user_id, value)
+                .createTransaction(userId, value)
                 .success(function() {
                     $modalInstance.close();
                     $route.reload();
