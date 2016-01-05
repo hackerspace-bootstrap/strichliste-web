@@ -17,7 +17,7 @@ var bower = require('gulp-bower');
 var gulpFilter = require('gulp-filter');
 
 var SOURCE_DIR = 'src';
-var TARGET_DIR = 'build';
+var TARGET_DIR = 'strichliste-web';
 
 var ENV = process.env.NODE_ENV;
 

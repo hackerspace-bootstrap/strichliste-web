@@ -23,11 +23,13 @@ To create a production build where sources are minified set the environment to `
 $ make production
 ````
 
-For this to work you need node.js installed on your system. 
+This will create a compressed and minified build in /strichliste-web
+
+Notice: For this to work you need node.js installed on your system. 
 
 ### configuration
 
-You can edit the settings in `build/js/settings.js` after a build, or `/settings.js` if you want the changes to persist a new build.
+You can edit the settings in `strichliste-web/js/settings.js` after a build, or `/settings.js` if you want the changes to persist a new build.
 
 ### development mode
 
@@ -40,7 +42,7 @@ It also starts an development server, listening on port `:8081`.
 $ make development
 ````
 
-Notice: In development mode, the `/settings.js` file will be automatically copied on change to `build/js/settings.js`
+Notice: In development mode, the `/settings.js` file will be automatically copied on change to `strichliste-web/js/settings.js`
 
 To access the development version visit [http://localhost:8081](http://localhost:8081)
 
