@@ -122,7 +122,6 @@ gulp.task('scripts_app', function () {
 gulp.task('settings', function() {
     return gulp
         .src('settings.js')
-        .pipe(gulpIf(isProduction, uglify()))
         .pipe(gulp.dest(TARGET_DIR + '/js'));
 });
 
