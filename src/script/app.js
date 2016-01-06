@@ -40,6 +40,7 @@ var app = angular.module('strichliste', ['ngRoute', 'ngIdle', 'pascalprecht.tran
 
         $translateProvider
             .useSanitizeValueStrategy('escaped')
+            .useMessageFormatInterpolation()
             .useStaticFilesLoader({
                 prefix: 'locales/',
                 suffix: '.json'
