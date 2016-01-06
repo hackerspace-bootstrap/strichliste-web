@@ -6,7 +6,7 @@ var less = require('gulp-less');
 var sequence = require('run-sequence');
 var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
-var cssnano = require('gulp-cssnano');
+var cssmin = require('gulp-minify-css');
 var gulpIf = require('gulp-if');
 var gutil = require('gulp-util');
 var htmlMin = require('gulp-minify-html');
@@ -84,7 +84,7 @@ gulp.task('style', ['bower_components'], function () {
     return gulp
         .src(bowerComponents.css)
         .pipe(concat('external.css'))
-        .pipe(gulpIf(isProduction, cssnano()))
+        .pipe(gulpIf(isProduction, cssmin({ processImport: false  })))
         .pipe(gulp.dest(TARGET_DIR + '/css/'))
         .pipe(cssFilter.restore());
 });
@@ -94,7 +94,7 @@ gulp.task('style_app', function () {
         .src(SOURCE_DIR + '/style/*.less')
         .pipe(less()).on('error', gutil.log)
         .pipe(colorguard())
-        .pipe(gulpIf(isProduction, cssnano()))
+        .pipe(gulpIf(isProduction, cssmin()))
         .pipe(gulp.dest(TARGET_DIR + '/css'));
 });
 
