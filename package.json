@@ -1,6 +1,6 @@
 {
   "name": "strichliste-web",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "description": "web frontend for the strichliste app",
   "main": "devServer.js",
   "scripts": {
