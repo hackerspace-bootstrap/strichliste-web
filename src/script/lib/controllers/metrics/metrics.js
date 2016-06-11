@@ -1,17 +1,29 @@
-var settings = require('../settings');
+angular
+    .module('strichliste.metrics', [
+        'ngRoute',
+        'chart.js',
+        'pascalprecht.translate',
+        'strichliste.services.message',
+        'strichliste.services.metrics'
+    ])
 
-module.exports.install = function(app) {
+    .config(function($routeProvider) {
+        $routeProvider.when('/metrics', {
+            templateUrl: 'controllers/metrics/metrics.html',
+            controller: 'MetricsController'
+        })
+    })
 
-    app.controller('MetricsController', function ($scope, $translate, metricsService, messageService) {
+    .controller('MetricsController', function ($scope, $translate, Metrics, Message) {
 
-        metricsService
+        Metrics
             .getMetrics()
             .success(function(metrics) {
                 $scope.metrics = metrics;
                 initChartData(metrics);
             })
             .error(function(body, httpCode) {
-                return messageService.httpError(body, httpCode);
+                return Message.httpError(body, httpCode);
             });
 
         function formatNumber(num) {
@@ -72,4 +84,3 @@ module.exports.install = function(app) {
         };
 
     });
-};

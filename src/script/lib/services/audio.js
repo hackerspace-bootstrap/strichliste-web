@@ -1,59 +1,64 @@
-var angular = require('../../lib/angular');
 
-var AudioContext = (window.AudioContext || window.webkitAudioContext);
-var context = null;
+angular
+    .module('strichliste.services.audio', [
+        'strichliste.services.message'
+    ])
 
-if(AudioContext) {
-    context = new AudioContext();
-}
+    .factory('Audio', function($http, Message) {
 
-function AudioService($http, messageService) {
+        var AudioContext = (window.AudioContext || window.webkitAudioContext);
+        var context = null;
 
-    this.prefetchedAudioObjects = {};
-
-    this.prefetch = function(filename) {
-
-        if(!context) {
-            return false;
+        if(AudioContext) {
+            context = new AudioContext();
         }
 
-        var that = this;
+        function Audio() {
+            this.prefetchedAudioObjects = {};
+        }
 
-        $http
-            .get(filename, {
-                responseType: 'arraybuffer'
-            })
-            .success(function(data) {
-                context.decodeAudioData(data, function(buffer) {
-                    that.prefetchedAudioObjects[filename] = buffer;
+        Audio.prototype.prefetch = function(filename) {
+
+            if(!context) {
+                return false;
+            }
+
+            var that = this;
+
+            $http
+                .get(filename, {
+                    responseType: 'arraybuffer'
+                })
+                .success(function(data) {
+                    context.decodeAudioData(data, function(buffer) {
+                        that.prefetchedAudioObjects[filename] = buffer;
+                    });
+                })
+                .error(function() {
+                    Message.error('errorLoadingAudio', {
+                        filename: filename
+                    });
                 });
-            })
-            .error(function() {
-                messageService.error('errorLoadingAudio', {
-                    filename: filename
-                });
-            });
-    };
+        };
 
-    this.play = function(filename) {
+        Audio.prototype.play = function(filename) {
 
-        if(!this.prefetchedAudioObjects[filename] || !context) {
-            return false;
-        }
-        
-        var source = context.createBufferSource();
+            if(!this.prefetchedAudioObjects[filename] || !context) {
+                return false;
+            }
 
-        source.buffer = this.prefetchedAudioObjects[filename];
-        source.connect(context.destination);
+            var source = context.createBufferSource();
 
-        if(source.start) {
-            source.start(0);
-        } else {
-            source.noteOn(0);
-        }
-    };
-}
+            source.buffer = this.prefetchedAudioObjects[filename];
+            source.connect(context.destination);
 
-module.exports.install = function (app) {
-    app.service('audioService', AudioService);
-};
+            if(source.start) {
+                source.start(0);
+            } else {
+                source.noteOn(0);
+            }
+        };
+
+        return new Audio();
+
+    });

@@ -10,9 +10,10 @@ var cssmin = require('gulp-minify-css');
 var gulpIf = require('gulp-if');
 var gutil = require('gulp-util');
 var htmlMin = require('gulp-minify-html');
-var colorguard = require('gulp-colorguard');
 var bower = require('gulp-bower');
 var gulpFilter = require('gulp-filter');
+var html2js = require('gulp-html2js');
+
 
 var SOURCE_DIR = 'src';
 var TARGET_DIR = 'strichliste-web';
@@ -93,7 +94,6 @@ gulp.task('style_app', function () {
     return gulp
         .src(SOURCE_DIR + '/style/*.less')
         .pipe(less()).on('error', gutil.log)
-        .pipe(colorguard())
         .pipe(gulpIf(isProduction, cssmin()))
         .pipe(gulp.dest(TARGET_DIR + '/css'));
 });
@@ -106,17 +106,29 @@ gulp.task('images', function () {
 
 gulp.task('html', function () {
     return gulp
-        .src(SOURCE_DIR + '/**/*.html')
+        .src(SOURCE_DIR + '/index.html')
         .pipe(gulpIf(isProduction, htmlMin({empty: true})))
         .pipe(gulp.dest(TARGET_DIR));
 });
 
 gulp.task('scripts_app', function () {
     return gulp
-        .src(SOURCE_DIR + '/script/app.js')
+        .src(SOURCE_DIR + '/script/**/*.js')
+        .pipe(concat('app.js'))
         .pipe(browserify()).on('error', gutil.log)
         .pipe(gulpIf(isProduction, ngAnnotate()))
         .pipe(gulpIf(isProduction, uglify()))
+        .pipe(gulp.dest(TARGET_DIR + '/js'));
+});
+
+gulp.task('templates_app', function() {
+
+    gulp.src(SOURCE_DIR + '/script/**/*.html')
+        .pipe(html2js('app-templates.js', {
+            adapter: 'angular',
+            base: 'src/script/lib',
+            name: 'strichliste'
+        }))
         .pipe(gulp.dest(TARGET_DIR + '/js'));
 });
 
@@ -127,13 +139,13 @@ gulp.task('settings', function() {
 });
 
 gulp.task('build', function (callback) {
-    sequence('clean', ['html', 'static', 'locales', 'images', 'style_app', 'scripts', 'style', 'scripts_app'], 'settings', callback);
+    sequence('clean', ['html', 'static', 'locales', 'images', 'style_app', 'scripts', 'style', 'scripts_app', 'templates_app'], 'settings', callback);
 });
 
 gulp.task('dev', ['build'], function (callback) {
     ENV = 'development';
 
-    gulp.watch(SOURCE_DIR + '/**/*.html', ['html']);
+    gulp.watch(SOURCE_DIR + '/**/*.html', ['html', 'templates_app']);
     gulp.watch(SOURCE_DIR + '/style/**/*.less', ['style_app']);
     gulp.watch(SOURCE_DIR + '/script/**/*.js', ['scripts_app']);
     gulp.watch(SOURCE_DIR + '/img/**/*', ['images']);

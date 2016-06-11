@@ -1,41 +1,61 @@
-var settings = require('../settings');
+angular
+    .module('strichliste.user', [
+        'ngRoute',
+        'ui.bootstrap',
+        'strichliste.filter.localtime',
+        'strichliste.services.message',
+        'strichliste.services.location',
+        'strichliste.services.transaction',
+        'strichliste.services.user',
+        'strichliste.services.audio',
+        'strichliste.services.serverSettings'
+    ])
 
-module.exports.install = function(app) {
-    app.controller('UserController', function ($scope, $routeParams, $timeout, messageService, locationService,
-                                               transactionService, userService, $modal, audioService,
-                                               settingsService) {
+    .config(function($routeProvider) {
+        $routeProvider.when('/user/:userId', {
+            templateUrl: 'controllers/user/user.html',
+            controller: 'UserController'
+        })
+    })
+
+    .controller('UserController', function ($scope, $routeParams, $timeout, $modal,
+                                            Message, Location, Transaction, User, Audio, ServerSettings) {
+
+        var userId = $routeParams.userId;
 
         function loadUser(userId) {
-            userService
+            User
                 .getUser(userId)
                 .success(function (user) {
                     $scope.user = user;
                 })
                 .error(function (body, httpCode) {
                     if (httpCode == 404) {
-                        return messageService.error('userDoesNotExist');
+                        return Message.error('userDoesNotExist');
                     }
 
-                    return messageService.httpError(body, httpCode);
+                    return Message.httpError(body, httpCode);
                 });
         }
 
-        settingsService.getUserBoundaries().then(function(result) {
-            $scope.boundary = result;
-        });
+        ServerSettings
+            .getUserBoundaries()
+            .then(function(result) {
+                $scope.boundary = result;
+            });
 
         $scope.backClick = function() {
-            locationService.gotoHome();
+            Location.gotoHome();
         };
 
         $scope.showAllClick = function() {
-            locationService.gotoTransactions($routeParams.user_id);
+            Location.gotoTransactions(userId);
         };
 
         $scope.transactionClick = function(value) {
 
             if(settings.audio.transaction) {
-                audioService.play(settings.audio.transaction);
+                Audio.play(settings.audio.transaction);
             }
 
             var balanceElement = angular.element('.account-balance');
@@ -49,25 +69,24 @@ module.exports.install = function(app) {
                 $scope.transactionRunning = false;
             }, 800);
 
-            var userId = $routeParams.user_id;
-            transactionService
+            Transaction
                 .createTransaction(userId, value)
                 .success(function() {
                     loadUser(userId);
                 })
                 .error(function(body, httpCode) {
                     if(httpCode == 403) {
-                        return messageService.error('userBoundaryReached');
+                        return Message.error('userBoundaryReached');
                     }
 
-                    return messageService.httpError(body, httpCode);
+                    return Message.httpError(body, httpCode);
                 });
         };
 
         $scope.customTransactionClick = function(transactionMode) {
 
             var modalInstance = $modal.open({
-                templateUrl: 'partials/customTransaction.html',
+                templateUrl: 'modals/customTransaction/customTransaction.html',
                 controller: 'CustomTransactionController',
                 resolve: {
                     transactionMode: function(){
@@ -86,6 +105,5 @@ module.exports.install = function(app) {
             $scope.dispenseSteps = settings.paymentSteps.dispense;
         }
 
-        loadUser($routeParams.user_id);
+        loadUser(userId);
     });
-};

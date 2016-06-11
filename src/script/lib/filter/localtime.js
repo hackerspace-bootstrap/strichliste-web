@@ -1,21 +1,18 @@
-var settings = require('../settings');
 require('moment-timezone');
-
 var moment = require('moment');
 
-function localtimeFilter() {
-    return function(input) {
-        var result = moment.utc(input).local();
+angular
+    .module('strichliste.filter.localtime', [])
 
-        if(settings.i18n.timezone != 'auto') {
-            result.tz(settings.i18n.timezone);
-        }
+    .filter('localtime', function localtimeFilter() {
 
-        return result.format(settings.i18n.dateFormat);
-    };
-}
+        return function(input) {
+            var result = moment.utc(input).local();
 
+            if(settings.i18n.timezone != 'auto') {
+                result.tz(settings.i18n.timezone);
+            }
 
-module.exports.install = function (app) {
-    app.filter('localtime', localtimeFilter);
-};
+            return result.format(settings.i18n.dateFormat);
+        };
+    });

@@ -1,24 +1,26 @@
-var angular = require('../../lib/angular');
+angular
+    .module('strichliste.services.location', [])
 
-function LocationService($location) {
+    .factory('Location', function ($location) {
 
-    this.gotoUser = function(user_id) {
-        $location.path('/user/' + user_id);
-    };
+        function Location() {
+        }
 
-    this.gotoCreateUser = function() {
-        $location.path('/createUser');
-    };
+        Location.prototype.gotoUser = function (userId) {
+            $location.path('/user/' + userId);
+        };
 
-    this.gotoHome = function() {
-        $location.path('/');
-    };
+        Location.prototype.gotoCreateUser = function () {
+            $location.path('/createUser');
+        };
 
-    this.gotoTransactions = function(user_id) {
-        $location.path('/user/' + user_id + '/transaction');
-    };
-}
+        Location.prototype.gotoHome = function () {
+            $location.path('/');
+        };
 
-module.exports.install = function (app) {
-    app.service('locationService', LocationService);
-};
+        Location.prototype.gotoTransactions = function (userId) {
+            $location.path('/user/' + userId + '/transaction');
+        };
+
+        return new Location();
+    });

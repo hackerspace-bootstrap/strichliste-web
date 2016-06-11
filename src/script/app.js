@@ -1,42 +1,24 @@
-var angular = require('./lib/angular');
-var controllerSetup = require('./lib/controller/setup');
-var serviceSetup = require('./lib/services/setup');
-var filterSetup = require('./lib/filter/setup');
-
-var settings = require('./lib/settings');
 var ms = require('ms');
 
-var app = angular.module('strichliste', ['ngRoute', 'ngIdle', 'pascalprecht.translate', 'ui.bootstrap', 'chart.js'])
+var app = angular
+    .module('strichliste', [
+        'ngRoute',
+        'ngIdle',
+        'pascalprecht.translate',
+        'strichliste.services.audio',
+        'strichliste.services.location',
+        'strichliste.index',
+        'strichliste.createUser',
+        'strichliste.transaction',
+        'strichliste.user',
+        'strichliste.metrics',
+        'strichliste.modals.customTransaction'
+    ])
 
-    .config(function ($routeProvider) {
-
-        $routeProvider
-            .when('/', {
-                templateUrl: 'partials/index.html',
-                controller: 'IndexController'
-            })
-            .when('/metrics', {
-                templateUrl: 'partials/metrics.html',
-                controller: 'MetricsController'
-            })
-            .when('/user/:user_id', {
-                templateUrl: 'partials/user.html',
-                controller: 'UserController'
-            })
-            .when('/createUser', {
-                templateUrl: 'partials/createUser.html',
-                controller: 'CreateUserController'
-            })
-            .when('/user/:user_id/transaction', {
-                templateUrl: 'partials/transaction.html',
-                controller: 'TransactionController'
-            })
-            .otherwise({
-                redirectTo: '/'
-            });
-    })
-
-    .config(function ($translateProvider) {
+    .config(function ($routeProvider, $translateProvider) {
+        $routeProvider.otherwise({
+            redirectTo: '/'
+        });
 
         $translateProvider
             .useSanitizeValueStrategy('escaped')
@@ -53,10 +35,14 @@ var app = angular.module('strichliste', ['ngRoute', 'ngIdle', 'pascalprecht.tran
 
     })
 
-    .run(function(audioService) {
+    .controller('AppController', function() {
+        // nothing there yet
+    })
+
+    .run(function(Audio) {
         angular.forEach(settings.audio, function(audio) {
             if(audio) {
-                audioService.prefetch(audio);
+                Audio.prefetch(audio);
             }
         });
     })
@@ -67,26 +53,22 @@ var app = angular.module('strichliste', ['ngRoute', 'ngIdle', 'pascalprecht.tran
 
 
 if(settings.idleTimeout) {
+
     app
         .config(function(IdleProvider) {
             IdleProvider.idle(Math.ceil(ms(settings.idleTimeout)/1000));
             IdleProvider.timeout(false);
         })
-        .run(function($rootScope, Idle, $location, locationService) {
+
+        .run(function($rootScope, Idle, $location, Location) {
 
             Idle.watch();
 
             $rootScope.$on('IdleStart', function() {
-                console.log("IdleStart");
-
                 if($location.path() != '/') {
-                    locationService.gotoHome();
+                    Location.gotoHome();
                 }
             });
 
         });
 }
-
-controllerSetup.install(app);
-serviceSetup.install(app);
-filterSetup.install(app);

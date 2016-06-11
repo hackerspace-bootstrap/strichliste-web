@@ -1,26 +1,25 @@
-var util = require('util');
+angular
+    .module('strichliste.services.transaction', [])
 
-var angular = require('../../lib/angular');
-var settings = require('../settings');
+    .factory('Transaction', function($http) {
 
-function TransactionService($http) {
+        function Transaction() {
+        }
 
-    this.getTransactionByUserId = function(user_id, offset, limit) {
-        return $http.get(settings.server + '/user/' + user_id + '/transaction', {
-            params: {
-                limit: limit,
-                offset: offset
-            }
-        });
-    };
+        Transaction.prototype.getTransactionByUserId = function(userId, offset, limit) {
+            return $http.get(settings.server + '/user/' + userId + '/transaction', {
+                params: {
+                    limit: limit,
+                    offset: offset
+                }
+            });
+        };
 
-    this.createTransaction = function(user_id, value) {
-        return $http.post(settings.server + '/user/' + user_id + '/transaction', {
-            value: value
-        });
-    };
-}
+        Transaction.prototype.createTransaction = function(userId, value) {
+            return $http.post(settings.server + '/user/' + userId + '/transaction', {
+                value: value
+            });
+        };
 
-module.exports.install = function (app) {
-    app.service('transactionService', TransactionService);
-};
+        return new Transaction();
+    });

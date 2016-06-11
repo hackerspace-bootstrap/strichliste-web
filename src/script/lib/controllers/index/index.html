@@ -1,0 +1,31 @@
+<div ng-controller="IndexController">
+    <div class="row">
+        <div class="col-xs-12">
+            <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 translate>indexActiveUser</h3>
+            <ul class="user-list clearfix">
+                <li ng-repeat="user in users | filter:isActiveUser | orderBy:'name'" ng-click="userClick(user.id)" class="col-xs-2 panel panel-default" title="{{user.name}}">
+                    <div class="name">{{user.name}}</div>
+                    <div class="balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance | number:2}} {{currency}}</div>
+                </li>
+                <li class="col-xs-2 panel panel-default create-user" ng-click="createUserClick()">+</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 translate>indexInactiveUser</h3>
+            <ul class="user-list clearfix">
+                <li ng-repeat="user in users | filter:isInactiveUser | orderBy:'name'" ng-click="userClick(user.id)" class="col-xs-2 panel panel-default" title="{{user.name}}">
+                    <div class="name">{{user.name}}</div>
+                    <div class="balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance | number:2}} {{currency}}</div>
+                </li>
+                <li class="col-xs-2 panel panel-default create-user" ng-click="createUserClick()">+</li>
+            </ul>
+        </div>
+    </div>
+</div>

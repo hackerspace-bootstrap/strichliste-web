@@ -1,13 +1,20 @@
-var settings = require('../settings');
+angular
+    .module('strichliste.modals.customTransaction', [
+        'ngRoute',
+        'ui.bootstrap',
+        'strichliste.services.location',
+        'strichliste.services.message',
+        'strichliste.services.audio',
+        'strichliste.services.transaction',
+        'strichliste.services.serverSettings',
+        'strichliste.services.user'
+    ])
 
-module.exports.install = function(app) {
-    app.controller('CustomTransactionController', function ($scope, $rootScope, $routeParams, $modalInstance, $route,
-                                                            $timeout,
-                                                            locationService, messageService, audioService,
-                                                            transactionService, transactionMode, settingsService,
-                                                            userService) {
+    .controller('CustomTransactionController', function ($scope, $rootScope, $routeParams, $modalInstance, $route, $timeout,
+                                                         Location, Message, Audio, Transaction, ServerSettings, User,
+                                                         transactionMode) {
 
-        var userId = $routeParams.user_id;
+        var userId = $routeParams.userId;
 
         // Because of some scope issues, we need to initialize the substructure
         $scope.transactionMode = transactionMode;
@@ -24,31 +31,33 @@ module.exports.install = function(app) {
             return !isNaN(parseFloat(value)) && isFinite(value);
         }
 
-        userService
+        User
             .getUser(userId)
             .success(function (user) {
                 $scope.user = user;
             });
 
-        settingsService.getUserBoundaries().then(function(result) {
-            $scope.boundary = result;
-        });
+        ServerSettings
+            .getUserBoundaries()
+            .then(function(result) {
+                $scope.boundary = result;
+            });
 
         $scope.submitTransaction = function(value) {
 
             if(settings.audio.transaction) {
-                audioService.play(settings.audio.transaction);
+                Audio.play(settings.audio.transaction);
             }
 
             value = normalizeDecimals(value);
             if(!isValidNumber(value)) {
-                return messageService.error('customTransactionValueInvalid');
+                return Message.error('customTransactionValueInvalid');
             }
 
             value = parseFloat(value).toFixed(2);
 
             if(value < 0.01) {
-                return messageService.error('customTransactionValueTooSmall', {
+                return Message.error('customTransactionValueTooSmall', {
                     currency: settings.i18n.currency
                 });
             }
@@ -59,7 +68,7 @@ module.exports.install = function(app) {
                 value *= -1;
             }
 
-            transactionService
+            Transaction
                 .createTransaction(userId, value)
                 .success(function() {
                     $modalInstance.close();
@@ -67,10 +76,10 @@ module.exports.install = function(app) {
                 })
                 .error(function(body, httpCode) {
                     if(httpCode == 403) {
-                        return messageService.error('userBoundaryReached');
+                        return Message.error('userBoundaryReached');
                     }
 
-                    return messageService.httpError(body, httpCode);
+                    return Message.httpError(body, httpCode);
                 });
         };
 
@@ -83,4 +92,3 @@ module.exports.install = function(app) {
         });
 
     });
-};

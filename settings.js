@@ -4,7 +4,7 @@ var settings = {
     // general
 
     // URL to the strichliste api server
-    server: 'http://demo-api.strichliste.org',
+    server: 'https://demo.strichliste.org/api',
 
     // period from which on the user counts as inactive [false=disabled]
     // format: https://www.npmjs.com/package/ms

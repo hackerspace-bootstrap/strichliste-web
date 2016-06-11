@@ -1,23 +1,23 @@
-var util = require('util');
+angular
+    .module('strichliste.services.user', [])
 
-var angular = require('../../lib/angular');
-var settings = require('../settings');
+    .factory('User', function($http) {
 
-function UserService($http) {
+        function User() {
+        }
 
-    this.getUsers = function() {
-        return $http.get(settings.server + '/user');
-    };
+        User.prototype.getUsers = function() {
+            return $http.get(settings.server + '/user');
+        };
 
-    this.getUser = function(user_id) {
-        return $http.get(settings.server + '/user/' + user_id);
-    };
+        User.prototype.getUser = function(user_id) {
+            return $http.get(settings.server + '/user/' + user_id);
+        };
 
-    this.createUser = function(name) {
-        return $http.post(settings.server + '/user', {name: name});
-    };
-}
+        User.prototype.createUser = function(name) {
+            return $http.post(settings.server + '/user', {name: name});
+        };
 
-module.exports.install = function (app) {
-    app.service('userService', UserService);
-};
+        return new User();
+    });
+

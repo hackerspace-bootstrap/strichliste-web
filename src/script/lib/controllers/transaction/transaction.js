@@ -1,16 +1,33 @@
-module.exports.install = function(app) {
-    app.controller('TransactionController', function ($scope, $routeParams, messageService, locationService, userService, transactionService) {
+angular
+    .module('strichliste.transaction', [
+        'ngRoute',
+        'strichliste.services.message',
+        'strichliste.services.location',
+        'strichliste.services.user',
+        'strichliste.services.transaction'
+    ])
+
+    .config(function($routeProvider) {
+        $routeProvider.when('/user/:userId/transaction', {
+            templateUrl: 'controllers/transaction/transaction.html',
+            controller: 'TransactionController'
+        })
+    })
+
+    .controller('TransactionController', function ($scope, $routeParams,
+                                                   Message, Location, User, Transaction) {
 
         var userNotFound = false;
         var entriesPerPage = 10;
+        var userId = $routeParams.userId;
 
         $scope.currentPage = 1;
         $scope.entriesPerPage = entriesPerPage;
 
         function loadTransactions(offset, limit) {
 
-            transactionService
-                .getTransactionByUserId($routeParams.user_id, offset, limit)
+            Transaction
+                .getTransactionByUserId(userId, offset, limit)
                 .success(function(result) {
                     $scope.transactions = result.entries;
                     $scope.totalItems = result.overallCount;
@@ -20,29 +37,29 @@ module.exports.install = function(app) {
                         // Handled in userService.getUser
                         return null;
                     }
-                    return messageService.httpError(body, httpCode);
+                    return Message.httpError(body, httpCode);
                 });
         }
 
-        userService
-            .getUser($routeParams.user_id)
+        User
+            .getUser(userId)
             .success(function(result) {
                 $scope.user = result;
             })
             .error(function(body, httpCode) {
                 if(httpCode == 404) {
                     userNotFound = true;
-                    return messageService.error('userDoesNotExist');
+                    return Message.error('userDoesNotExist');
                 }
 
-                return messageService.httpError(body, httpCode);
+                return Message.httpError(body, httpCode);
             });
 
         $scope.backClick = function() {
             if(userNotFound) {
-                locationService.gotoHome();
+                Location.gotoHome();
             } else {
-                locationService.gotoUser($routeParams.user_id);
+                Location.gotoUser(userId);
             }
         };
 
@@ -51,9 +68,8 @@ module.exports.install = function(app) {
         };
 
         $scope.pageChanged = function(currentPage) {
-            loadTransactions((currentPage-1)*entriesPerPage, entriesPerPage);
+            loadTransactions((currentPage - 1) * entriesPerPage, entriesPerPage);
         };
 
         loadTransactions(0, entriesPerPage);
     });
-};

@@ -1,15 +1,15 @@
-var util = require('util');
+angular
+    .module('strichliste.services.metrics', [])
 
-var angular = require('../../lib/angular');
-var settings = require('../settings');
+    .factory('Metrics', function($http) {
 
-function MetricsService($http) {
+        function Metrics() {
+        }
 
-    this.getMetrics = function() {
-        return $http.get(settings.server + '/metrics');
-    };
-}
+        Metrics.prototype.getMetrics = function() {
+            return $http.get(settings.server + '/metrics');
+        };
 
-module.exports.install = function (app) {
-    app.service('metricsService', MetricsService);
-};
+        return new Metrics();
+
+    });

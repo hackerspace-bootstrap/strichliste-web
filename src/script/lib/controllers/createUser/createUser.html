@@ -1,4 +1,4 @@
-<div class="user-create row">
+<div class="user-create row" ng-controller="CreateUserController">
     <div class="col-xs-12">
         <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 

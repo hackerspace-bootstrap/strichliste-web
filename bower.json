@@ -16,13 +16,13 @@
   ],
   "dependencies": {
     "bootswatch-dist": "3.3.6-simplex",
-    "angular-translate": "^2.8.1",
-    "angular-translate-loader-static-files": "^2.8.1",
-    "Chart.js": "~1.0.2",
-    "angular-translate-interpolation-messageformat": "~2.8.1",
-    "angular": "~1.4.8",
-    "angular-route": "~1.4.8",
-    "angular-chart.js": "~0.8.8",
-    "ng-idle": "~1.1.1"
+    "angular-translate": "~2.11.0",
+    "angular-translate-loader-static-files": "~2.11.0",
+    "Chart.js": "~1.1.1",
+    "angular-translate-interpolation-messageformat": "~2.11.0",
+    "angular": "~1.5.6",
+    "angular-route": "~1.5.6",
+    "angular-chart.js": "~0.10.2",
+    "ng-idle": "~1.2.2"
   }
 }
