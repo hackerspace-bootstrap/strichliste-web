@@ -10,7 +10,7 @@
 
         <div class="row">
             <h2 class="col-xs-12 col-sm-6" translate translate-value-name="{{user.name}}">userPageTitle</h2>
-            <div class="col-xs-12 col-sm-6 account-balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance | number:2}} {{currency}}</div>
+            <div class="col-xs-12 col-sm-6 account-balance" ng-class="user.balance < -0.009 ? 'negative' : ''">{{user.balance | number:2}} {{currency}}</div>
         </div>
 
         <div class="row">
