@@ -18,6 +18,10 @@ angular
             $location.path('/');
         };
 
+        Location.prototype.isHome = function() {
+            return ($location.path() == '/');
+        };
+
         Location.prototype.gotoTransactions = function (userId) {
             $location.path('/user/' + userId + '/transaction');
         };

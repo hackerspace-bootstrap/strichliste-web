@@ -60,14 +60,16 @@ if(settings.idleTimeout) {
             IdleProvider.timeout(false);
         })
 
-        .run(function($rootScope, Idle, $location, Location) {
+        .run(function($rootScope, Idle, Location) {
 
             Idle.watch();
 
             $rootScope.$on('IdleStart', function() {
-                if($location.path() != '/') {
-                    Location.gotoHome();
-                }
+                $rootScope.$apply(function() {
+                    if (!Location.isHome()) {
+                        Location.gotoHome();
+                    }
+                });
             });
 
         });
