@@ -2,6 +2,7 @@ angular
     .module('strichliste.modals.customTransaction', [
         'ngRoute',
         'ui.bootstrap',
+        'strichliste.directives.smartFloat',
         'strichliste.services.location',
         'strichliste.services.message',
         'strichliste.services.audio',
