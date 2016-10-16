@@ -24,10 +24,6 @@ angular
             $modalInstance.close();
         };
 
-        function normalizeDecimals(value) {
-            return value.replace(',', '.');
-        }
-
         function isValidNumber(value) {
             return !isNaN(parseFloat(value)) && isFinite(value);
         }
@@ -50,7 +46,6 @@ angular
                 Audio.play(settings.audio.transaction);
             }
 
-            value = normalizeDecimals(value);
             if(!isValidNumber(value)) {
                 return Message.error('customTransactionValueInvalid');
             }
