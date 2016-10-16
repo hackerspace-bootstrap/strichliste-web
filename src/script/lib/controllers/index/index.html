@@ -7,7 +7,10 @@
     <div class="col-xs-12">
         <h3 translate>indexActiveUser</h3>
         <ul class="user-list clearfix">
-            <li ng-repeat="user in users | filter:isActiveUser | orderBy:'name'" ng-click="userClick(user.id)" class="col-xs-2 panel panel-default" title="{{user.name}}">
+            <li ng-repeat="user in users | filter:isActiveUser | orderBy:'name' track by user.id"
+                ng-click="userClick(user.id)"
+                class="col-xs-2 panel panel-default"
+                title="{{user.name}}">
                 <div class="name">{{user.name}}</div>
                 <div class="balance" ng-class="user.balance < -0.009 ? 'negative' : ''">{{user.balance | number:2}} {{currency}}</div>
             </li>
@@ -19,7 +22,10 @@
     <div class="col-xs-12">
         <h3 translate>indexInactiveUser</h3>
         <ul class="user-list clearfix">
-            <li ng-repeat="user in users | filter:isInactiveUser | orderBy:'name'" ng-click="userClick(user.id)" class="col-xs-2 panel panel-default" title="{{user.name}}">
+            <li ng-repeat="user in users | filter:isInactiveUser | orderBy:'name' track by user.id"
+                ng-click="userClick(user.id)"
+                class="col-xs-2 panel panel-default"
+                title="{{user.name}}">
                 <div class="name">{{user.name}}</div>
                 <div class="balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance | number:2}} {{currency}}</div>
             </li>
