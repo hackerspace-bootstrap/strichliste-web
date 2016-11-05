@@ -43,6 +43,5 @@
     "customTransactionDescription": "Gib hier deinen Wunschbetrag ein:",
     "customTransactionPay": "Einkauf bezahlen",
     "customTransactionCharge": "Guthaben aufladen",
-    "customTransactionValueInvalid": "Deine Eingabe enthält ungültige Zeichen",
     "customTransactionValueTooSmall": "Eine Transaktion kann nicht kleiner als 0.01 {currency} sein."
 }

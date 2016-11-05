@@ -41,6 +41,5 @@
     "customTransactionDescription": "İstedigin Miktarı gir:",
     "customTransactionPay": "Alışı öde",
     "customTransactionCharge": "Kontör yükle",
-    "customTransactionValueInvalid": "Girişin'de geçersiz karakter var",
     "customTransactionValueTooSmall": "İşlem 0.01 {currency}'den az olamaz."
 }

@@ -41,6 +41,5 @@
     "customTransactionDescription": "Zadej zde tvou požadovanou sumu:",
     "customTransactionPay": "Zaplatit nákup",
     "customTransactionCharge": "Nabít kredit",
-    "customTransactionValueInvalid": "Tvé zadání obsahuje neplatné znaky",
     "customTransactionValueTooSmall": "Transakce nemůže být menší než 0.01 {currency}."
 }

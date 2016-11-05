@@ -43,6 +43,5 @@
     "customTransactionDescription": "Enter your custom transaction value here:",
     "customTransactionPay": "Pay purchase",
     "customTransactionCharge": "Charge wallet",
-    "customTransactionValueInvalid": "The entered input has invalid characters",
     "customTransactionValueTooSmall": "Transaction value can't be smaller than 0.01 {currency}"
 }

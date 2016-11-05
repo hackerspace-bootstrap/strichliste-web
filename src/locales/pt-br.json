@@ -43,6 +43,5 @@
     "customTransactionDescription": "Informe o valor avulso:",
     "customTransactionPay": "Pagar",
     "customTransactionCharge": "Adicionar crédito",
-    "customTransactionValueInvalid": "O valor informado é inválido",
     "customTransactionValueTooSmall": "O valor não pode ser inferior à {currency} 0,01"
 }

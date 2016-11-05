@@ -15,8 +15,8 @@
     <form ng-submit="submitTransaction(transactionValue)">
         <div class="input-group input-group-lg">
             <span class="input-group-addon">{{currency}}</span>
-            <input type="text"
-                   smart-float
+            <input type="number"
+                   step="0.01"
                    class="form-control transaction-value"
                    placeholder="0.42"
                    ng-model="transactionValue" required autocomplete="off" autofocus>

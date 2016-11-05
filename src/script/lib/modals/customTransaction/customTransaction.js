@@ -2,7 +2,6 @@ angular
     .module('strichliste.modals.customTransaction', [
         'ngRoute',
         'ui.bootstrap',
-        'strichliste.directives.smartFloat',
         'strichliste.services.location',
         'strichliste.services.message',
         'strichliste.services.audio',
@@ -24,10 +23,6 @@ angular
             $modalInstance.close();
         };
 
-        function isValidNumber(value) {
-            return !isNaN(parseFloat(value)) && isFinite(value);
-        }
-
         User
             .getUser(userId)
             .success(function (user) {
@@ -44,10 +39,6 @@ angular
 
             if(settings.audio.transaction) {
                 Audio.play(settings.audio.transaction);
-            }
-
-            if(!isValidNumber(value)) {
-                return Message.error('customTransactionValueInvalid');
             }
 
             value = parseFloat(value).toFixed(2);
