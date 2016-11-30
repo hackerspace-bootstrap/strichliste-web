@@ -3,9 +3,22 @@
         <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
     </div>
 </div>
+
 <div class="row">
     <div class="col-xs-12">
-        <h3 translate>indexActiveUser</h3>
+        <ul class="nav nav-tabs" ng-if="mode.tabbed">
+            <li ng-class="{ 'active': mode.currentTab == 'active' }" ng-click="mode.currentTab = 'active'" >
+                <a translate>indexActiveUser</a>
+            </li>
+            <li ng-class="{ 'active': mode.currentTab == 'inactive' }" ng-click="mode.currentTab = 'inactive'">
+                <a translate>indexInactiveUser</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-xs-12" ng-if="mode.currentTab == 'active' || !mode.tabbed">
+        <h3 ng-hide="mode.tabbed" translate>indexActiveUser</h3>
+
         <ul class="user-list clearfix">
             <li ng-repeat="user in users | filter:isActiveUser | orderBy:'name' track by user.id"
                 ng-click="userClick(user.id)"
@@ -17,10 +30,10 @@
             <li class="col-xs-2 panel panel-default create-user" ng-click="createUserClick()">+</li>
         </ul>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <h3 translate>indexInactiveUser</h3>
+
+    <div class="col-xs-12" ng-if="mode.currentTab == 'inactive' || !mode.tabbed">
+        <h3 ng-hide="mode.tabbed" translate>indexInactiveUser</h3>
+
         <ul class="user-list clearfix">
             <li ng-repeat="user in users | filter:isInactiveUser | orderBy:'name' track by user.id"
                 ng-click="userClick(user.id)"
@@ -32,4 +45,5 @@
             <li class="col-xs-2 panel panel-default create-user" ng-click="createUserClick()">+</li>
         </ul>
     </div>
+
 </div>

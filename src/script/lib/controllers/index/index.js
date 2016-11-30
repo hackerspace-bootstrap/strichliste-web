@@ -27,6 +27,13 @@ angular
 
     .controller('IndexController', function ($scope, Location, User, Message) {
 
+        if (settings.index && settings.index.tabbed) {
+            $scope.mode = {
+                tabbed: true,
+                currentTab: 'active'
+            };
+        }
+
         $scope.userClick = function (userId) {
             Location.gotoUser(userId);
         };

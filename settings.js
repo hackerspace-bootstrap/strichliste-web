@@ -22,6 +22,10 @@ var settings = {
         transaction: 'cash-register.ogg'
     },
 
+    index: {
+        tabbed: false
+    },
+
     /////////////////////////////////////////////////////////////////////////
     // payments
 
