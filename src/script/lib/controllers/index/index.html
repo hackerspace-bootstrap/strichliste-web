@@ -27,7 +27,7 @@
                 class="col-xs-2 panel panel-default"
                 title="{{user.name}}">
                 <div class="name">{{user.name}}</div>
-                <div class="balance" ng-class="user.balance < 0 ? 'negative' : ''">{{user.balance | number:2}} {{currency}}</div>
+                <div class="balance" ng-class="user.balance < -0.009 ? 'negative' : ''">{{user.balance | number:2}} {{currency}}</div>
             </li>
             <li class="col-xs-2 panel panel-default create-user" ng-click="createUserClick()">+</li>
         </ul>
