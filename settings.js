@@ -22,6 +22,8 @@ var settings = {
         transaction: 'cash-register.ogg'
     },
 
+    // For performance, one can switch the index page to a "tabbed" mode for active/inactive users
+    // The users/html-elements are not rendered until the tab is opened
     index: {
         tabbed: false
     },
