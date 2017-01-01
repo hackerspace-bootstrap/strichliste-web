@@ -20,7 +20,7 @@
         <h3 ng-hide="mode.tabbed" translate>indexActiveUser</h3>
 
         <ul class="user-list clearfix">
-            <li ng-repeat="user in users | filter:isActiveUser | orderBy:'name' track by user.id"
+            <li ng-repeat="user in activeUsers | orderBy:'name' track by user.id"
                 ng-click="userClick(user.id)"
                 class="col-xs-2 panel panel-default"
                 title="{{user.name}}">
@@ -35,7 +35,7 @@
         <h3 ng-hide="mode.tabbed" translate>indexInactiveUser</h3>
 
         <ul class="user-list clearfix">
-            <li ng-repeat="user in users | filter:isInactiveUser | orderBy:'name' track by user.id"
+            <li ng-repeat="user in inactiveUsers | orderBy:'name' track by user.id"
                 ng-click="userClick(user.id)"
                 class="col-xs-2 panel panel-default"
                 title="{{user.name}}">

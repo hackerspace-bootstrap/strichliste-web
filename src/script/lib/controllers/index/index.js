@@ -27,6 +27,9 @@ angular
 
     .controller('IndexController', function ($scope, Location, User, Message) {
 
+        $scope.activeUsers = [];
+        $scope.inactiveUsers = [];
+
         if (settings.index && settings.index.tabbed) {
             $scope.mode = {
                 tabbed: true,
@@ -44,15 +47,13 @@ angular
 
         User.getUsers()
             .success(function (users) {
-                $scope.users = users.entries;
+                $scope.activeUsers = users.entries.filter(isActiveUser);
+                $scope.inactiveUsers = users.entries.filter(function(user) {
+                    return !isActiveUser(user);
+                });
             })
             .error(function (body, httpCode) {
                 return Message.httpError(body, httpCode);
             });
-
-        $scope.isActiveUser = isActiveUser;
-        $scope.isInactiveUser = function (user) {
-            return !isActiveUser(user);
-        };
 
     });
