@@ -35,7 +35,7 @@ angular
                 $scope.boundary = result;
             });
 
-        $scope.submitTransaction = function(value) {
+        $scope.submitTransaction = function(value, comment) {
 
             if(settings.audio.transaction) {
                 Audio.play(settings.audio.transaction);
@@ -55,8 +55,12 @@ angular
                 value *= -1;
             }
 
+            if(!comment) {
+                comment = 'Custom transaction';
+            }
+
             Transaction
-                .createTransaction(userId, value)
+                .createTransaction(userId, value, comment)
                 .success(function() {
                     $modalInstance.close();
                     $route.reload();

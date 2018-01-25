@@ -15,9 +15,10 @@ angular
             });
         };
 
-        Transaction.prototype.createTransaction = function(userId, value) {
+        Transaction.prototype.createTransaction = function(userId, value, comment) {
             return $http.post(settings.server + '/user/' + userId + '/transaction', {
-                value: value
+                value: value,
+                comment: comment
             });
         };
 
