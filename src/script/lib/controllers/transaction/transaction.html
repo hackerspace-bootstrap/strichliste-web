@@ -22,16 +22,16 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th translate>transactionCreateDate</th>
+                        <th translate class="col-xs-1">transactionCreateDate</th>
                         <th translate>transactionComment</th>
-                        <th class="text-right" translate>transactionValue</th>
+                        <th class="text-right col-xs-2" translate>transactionValue</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="transaction in transactions | orderBy:'-id' track by transaction.id">
-                        <td>{{transaction.createDate | localtime}}</td>
+                        <td class="col-xs-1">{{transaction.createDate | localtime}}</td>
                         <td>{{transaction.comment}}</td>
-                        <td class="balance text-right" ng-class="transaction.value < 0 ? 'negative' : ''">{{transaction.value|number:2}} {{currency}}</td>
+                        <td class="balance text-right col-xs-2" ng-class="transaction.value < 0 ? 'negative' : ''">{{transaction.value|number:2}} {{currency}}</td>
                     </tr>
                 </tbody>
             </table>
