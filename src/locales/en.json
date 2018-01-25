@@ -45,5 +45,5 @@
     "customTransactionPay": "Pay purchase",
     "customTransactionCharge": "Charge wallet",
     "customTransactionValueTooSmall": "Transaction value can't be smaller than 0.01 {currency}",
-    "customTransactionCommentInputPlaceholder": "Enter a transaction comment"
+    "customTransactionCommentInputPlaceholder": "transaction comment"
 }
