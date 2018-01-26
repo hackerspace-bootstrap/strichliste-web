@@ -39,10 +39,6 @@ angular
 
         $scope.submitTransaction = function(value, comment) {
 
-            if(settings.audio.transaction) {
-                Audio.play(settings.audio.transaction);
-            }
-
             value = parseFloat(value).toFixed(2);
 
             if(value < 0.01) {
@@ -64,6 +60,9 @@ angular
             Transaction
                 .createTransaction(userId, value, comment)
                 .success(function() {
+                    if(settings.audio.transaction) {
+                        Audio.play(settings.audio.transaction);
+                    }
                     $modalInstance.close();
                     $route.reload();
                 })
