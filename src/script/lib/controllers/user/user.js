@@ -52,6 +52,21 @@ angular
             Location.gotoTransactions(userId);
         };
 
+        $scope.transferClick = function(value) {
+            var modalInstance = $modal.open({
+                templateUrl: 'modals/userTransfer/userTransfer.html',
+                controller: 'userTransferController',
+                resolve: {
+                    value: function(){
+                        return value;
+                    },
+                    comment: function(){
+                        return 'Default transaction';
+                    }
+                }
+            });
+        }
+
         $scope.transactionClick = function(value) {
 
             if(settings.audio.transaction) {
@@ -101,10 +116,12 @@ angular
         if(settings.paymentSteps.customTransactions) {
             $scope.depositSteps = settings.paymentSteps.deposit.slice(0, 4);
             $scope.dispenseSteps = settings.paymentSteps.dispense.slice(0, 4);
+            $scope.transferSteps = settings.paymentSteps.transfer.slice(0, 4);
             $scope.customTransactions = true;
         } else {
             $scope.depositSteps = settings.paymentSteps.deposit;
             $scope.dispenseSteps = settings.paymentSteps.dispense;
+            $scope.transferSteps = settings.paymentSteps.transfer;
         }
 
         loadUser(userId);

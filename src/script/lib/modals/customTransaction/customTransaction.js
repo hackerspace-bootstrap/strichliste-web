@@ -10,7 +10,7 @@ angular
         'strichliste.services.user'
     ])
 
-    .controller('CustomTransactionController', function ($scope, $rootScope, $routeParams, $modalInstance, $route, $timeout,
+    .controller('CustomTransactionController', function ($scope, $rootScope, $routeParams, $modal, $modalInstance, $route, $timeout,
                                                          Location, Message, Audio, Transaction, ServerSettings, User,
                                                          transactionMode) {
 
@@ -47,14 +47,31 @@ angular
                 });
             }
 
+            if(!comment) {
+                comment = 'Custom transaction';
+            }
+
             // We can't pass value directly negated like in the UserController,
             // because we need to normalize the value first
             if(transactionMode == 'spend') {
                 value *= -1;
             }
-
-            if(!comment) {
-                comment = 'Custom transaction';
+            else if(transactionMode == 'transfer') {
+                // Open user selection dialog for transfers
+                $modalInstance.close();
+                var modalInstance = $modal.open({
+                    templateUrl: 'modals/userTransfer/userTransfer.html',
+                    controller: 'userTransferController',
+                    resolve: {
+                        value: function(){
+                            return value;
+                        },
+                        comment: function(){
+                            return comment;
+                        }
+                    }
+                });
+                return;
             }
 
             Transaction

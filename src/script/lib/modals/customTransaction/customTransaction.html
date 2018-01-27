@@ -5,7 +5,7 @@
 <div class="modal-body">
     <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
-    <alert ng-if="transactionMode == 'spend' && boundary.exceedsLowerLimit(user.balance - transactionValue) ||
+    <alert ng-if="(transactionMode == 'spend' || transactionMode == 'transfer') && boundary.exceedsLowerLimit(user.balance - transactionValue) ||
                   transactionMode == 'charge' && boundary.exceedsUpperLimit(user.balance + transactionValue)"
            type="alert.type">
         <span translate>transactionBoundaryReached</span>
@@ -42,5 +42,9 @@
             ng-disabled="boundary.exceedsUpperLimit(user.balance + transactionValue)"
             ng-click="submitTransaction(transactionValue, transactionComment)"
             ng-if="transactionMode == 'charge'" translate>customTransactionCharge</button>
+    <button class="btn btn-lg btn-danger"
+            ng-disabled="boundary.exceedsLowerLimit(user.balance - transactionValue)"
+            ng-click="submitTransaction(transactionValue, transactionComment)"
+            ng-if="transactionMode == 'transfer'" translate>customTransactionTransfer</button>
     <button class="btn btn-lg btn-default" ng-click="cancel()" translate>cancel</button>
 </div>

@@ -12,7 +12,8 @@ var app = angular
         'strichliste.transaction',
         'strichliste.user',
         'strichliste.metrics',
-        'strichliste.modals.customTransaction'
+        'strichliste.modals.customTransaction',
+        'strichliste.modals.userTransfer'
     ])
 
     .config(function ($routeProvider, $translateProvider) {

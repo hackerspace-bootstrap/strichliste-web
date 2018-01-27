@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h3 class="modal-title" translate>userTransferHeadline</h3>
+</div>
+
+<div class="modal-body col-xs-12">
+    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+    <ul class="nav nav-tabs">
+        <li ng-class="{ 'active': mode.currentTab == 'active' }" ng-click="mode.currentTab = 'active'" >
+            <a translate>indexActiveUser</a>
+        </li>
+        <li ng-class="{ 'active': mode.currentTab == 'inactive' }" ng-click="mode.currentTab = 'inactive'">
+            <a translate>indexInactiveUser</a>
+        </li>
+    </ul>
+    <br>
+
+    <ul class="user-list clearfix" ng-if="mode.currentTab == 'active'">
+        <li ng-repeat="user in activeUsers | orderBy:'name' track by user.id"
+            ng-click="transactionClick(user)"
+            class="col-xs-2 panel panel-default"
+            title="{{user.name}}">
+            <div class="name">{{user.name}}</div>
+            <div class="balance" ng-class="user.balance < -0.009 ? 'negative' : ''">{{user.balance | number:2}} {{currency}}</div>
+        </li>
+    </ul>
+
+    <ul class="user-list clearfix" ng-if="mode.currentTab == 'inactive'">
+        <li ng-repeat="user in inactiveUsers | orderBy:'name' track by user.id"
+            ng-click="transactionClick(user)"
+            class="col-xs-2 panel panel-default"
+            title="{{user.name}}">
+            <div class="name">{{user.name}}</div>
+            <div class="balance" ng-class="user.balance < -0.009 ? 'negative' : ''">{{user.balance | number:2}} {{currency}}</div>
+        </li>
+    </ul>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-lg btn-default" ng-click="cancel()" translate>cancel</button>
+</div>
