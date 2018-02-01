@@ -29,7 +29,7 @@
                     <button class="btn btn-primary btn-lg col-xs-12 col-sm-2" ng-disabled="transactionRunning || boundary.exceedsOrEqualsLowerLimit(user.balance)" ng-click="customTransactionClick('spend')" ng-if="customTransactions">? {{currency}}</button>
                 </div>
 
-                <div class="clearfix">
+                <div class="clearfix" ng-if="enableTransfer">
                     <h3 translate>userTransferMoney</h3>
                     <button class="btn btn-danger btn-lg col-xs-12 col-sm-2" ng-disabled="transactionRunning || boundary.exceedsLowerLimit(user.balance - step)" ng-click="transferClick(step)" ng-repeat="step in transferSteps">{{step | number:2}} {{currency}}</button>
                     <button class="btn btn-danger btn-lg col-xs-12 col-sm-2" ng-disabled="transactionRunning || boundary.exceedsOrEqualsLowerLimit(user.balance)" ng-click="customTransactionClick('transfer')" ng-if="customTransactions">? {{currency}}</button>

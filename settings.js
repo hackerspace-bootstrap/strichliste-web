@@ -42,6 +42,9 @@ var settings = {
         // payment steps for transfer
         transfer: [0.50, 1.00, 2.00, 5.00, 10.00],
 
+        // enable t"ransfer money to somebody else" option
+        wireTransfer: false,
+
         // enables custom transactions. If enabled, payment steps are reduced
         // to only 4 steps
         customTransactions: true
