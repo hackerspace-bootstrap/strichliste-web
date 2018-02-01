@@ -42,7 +42,11 @@ var settings = {
         // enables custom transactions. If enabled, payment steps are reduced
         // to only 4 steps
         customTransactions: true
+
     },
+
+    // Enable comment section for custom transfers, Requires backend >= 1.6.0
+    comments: false,
 
     /////////////////////////////////////////////////////////////////////////
     // i18n section

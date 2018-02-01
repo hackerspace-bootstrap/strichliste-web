@@ -19,6 +19,8 @@ angular
         // Because of some scope issues, we need to initialize the substructure
         $scope.transactionMode = transactionMode;
 
+        $scope.enableComments = settings.comments;
+
         $scope.cancel = function() {
             $modalInstance.close();
         };
