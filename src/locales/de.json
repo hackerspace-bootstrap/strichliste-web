@@ -19,6 +19,7 @@
     "transactionForUser": "Transaktionsübersicht für „{name}”",
     "transactionCurrentPage": "Seite {current}/{max}",
     "transactionCreateDate": "Buchungsdatum",
+    "transactionComment": "Kommentar",
     "transactionValue": "Wert",
     "transactionBoundaryReached": "Die Transaktion hat die Ober- oder Untergrenze überschritten.",
     "nextPage": "Nächste",
@@ -43,5 +44,6 @@
     "customTransactionDescription": "Gib hier deinen Wunschbetrag ein:",
     "customTransactionPay": "Einkauf bezahlen",
     "customTransactionCharge": "Guthaben aufladen",
-    "customTransactionValueTooSmall": "Eine Transaktion kann nicht kleiner als 0.01 {currency} sein."
+    "customTransactionValueTooSmall": "Eine Transaktion kann nicht kleiner als 0.01 {currency} sein.",
+    "customTransactionCommentInputPlaceholder": "Kommentar der Transaktion"
 }

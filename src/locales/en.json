@@ -19,6 +19,7 @@
     "transactionForUser": "Transactions for user „{name}”",
     "transactionCurrentPage": "Page {current}/{max}",
     "transactionCreateDate": "create date",
+    "transactionComment": "comment",
     "transactionValue": "value",
     "transactionBoundaryReached": "The transaction exceeded the upper or lower boundary",
     "nextPage": "Next",
@@ -43,5 +44,6 @@
     "customTransactionDescription": "Enter your custom transaction value here:",
     "customTransactionPay": "Pay purchase",
     "customTransactionCharge": "Charge wallet",
-    "customTransactionValueTooSmall": "Transaction value can't be smaller than 0.01 {currency}"
+    "customTransactionValueTooSmall": "Transaction value can't be smaller than 0.01 {currency}",
+    "customTransactionCommentInputPlaceholder": "transaction comment"
 }

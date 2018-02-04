@@ -12,7 +12,7 @@
     </alert>
 
     <p translate>customTransactionDescription</p>
-    <form ng-submit="submitTransaction(transactionValue)">
+    <form ng-submit="submitTransaction(transactionValue, transactionComment)">
         <div class="input-group input-group-lg">
             <span class="input-group-addon">{{currency}}</span>
             <input type="number"
@@ -21,17 +21,26 @@
                    placeholder="0.42"
                    ng-model="transactionValue" required autocomplete="off" autofocus>
         </div>
+        <br ng-if="enableComments">
+        <div class="input-group input-group-lg" ng-if="enableComments">
+            <span class="input-group-addon" translate>transactionComment</span>
+            <input type="text"
+            class="form-control transaction-comment"
+            placeholder="{{'customTransactionCommentInputPlaceholder' | translate}}"
+            maxlength="64"
+            ng-model="transactionComment" autocomplete="off">
+        </div>
     </form>
 </div>
 
 <div class="modal-footer">
     <button class="btn btn-lg btn-primary"
             ng-disabled="boundary.exceedsLowerLimit(user.balance - transactionValue)"
-            ng-click="submitTransaction(transactionValue)"
+            ng-click="submitTransaction(transactionValue, transactionComment)"
             ng-if="transactionMode == 'spend'" translate>customTransactionPay</button>
     <button class="btn btn-lg btn-success"
             ng-disabled="boundary.exceedsUpperLimit(user.balance + transactionValue)"
-            ng-click="submitTransaction(transactionValue)"
+            ng-click="submitTransaction(transactionValue, transactionComment)"
             ng-if="transactionMode == 'charge'" translate>customTransactionCharge</button>
     <button class="btn btn-lg btn-default" ng-click="cancel()" translate>cancel</button>
 </div>

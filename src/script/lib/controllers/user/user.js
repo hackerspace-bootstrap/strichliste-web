@@ -69,8 +69,10 @@ angular
                 $scope.transactionRunning = false;
             }, 800);
 
+            var comment = 'Default transaction';
+
             Transaction
-                .createTransaction(userId, value)
+                .createTransaction(userId, value, comment)
                 .success(function() {
                     loadUser(userId);
                 })
