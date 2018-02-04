@@ -67,20 +67,7 @@ angular
 
             // Pay money from user
             Transaction
-                .createTransaction(userId, value * -1, newcomment)
-                .error(function(body, httpCode) {
-                    // TODO even though this fails (if you have the negative transaction limit reached)
-                    // the code below to add value to the other account is still executed.
-                    if(httpCode == 403) {
-                        return Message.error('userBoundaryReached');
-                    }
-
-                    return Message.httpError(body, httpCode);
-                });
-
-            // Add new value to target user
-            Transaction
-                .createTransaction(targetUser.id, value, newcomment)
+                .createTransaction(userId, value * -1, newcomment, targetUser.id)
                 .success(function() {
                     if(settings.audio.transaction) {
                         Audio.play(settings.audio.transaction);
@@ -89,8 +76,6 @@ angular
                     $route.reload();
                 })
                 .error(function(body, httpCode) {
-                    // Warning: If transaction adding limits are smaller than removing value this can crash
-                    // In order to solve this issue a proper backend API has to be implemented.
                     if(httpCode == 403) {
                         return Message.error('userBoundaryReached');
                     }
