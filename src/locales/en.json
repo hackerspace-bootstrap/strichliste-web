@@ -3,6 +3,7 @@
     "indexInactiveUser": "Inactive user",
     "userChargeWallet": "Charge your wallet",
     "userSpendMoney": "What you have to pay",
+    "userTransferMoney": "Transfer money to someone else",
     "userPageTitle": "User „{name}”",
     "userLastTransactions": "Last {number, plural, one{transaction} other{# transactions}}",
     "userDoesNotExist": "User does not exist",
@@ -44,6 +45,8 @@
     "customTransactionDescription": "Enter your custom transaction value here:",
     "customTransactionPay": "Pay purchase",
     "customTransactionCharge": "Charge wallet",
+    "customTransactionTransfer": "Transfer money",
     "customTransactionValueTooSmall": "Transaction value can't be smaller than 0.01 {currency}",
-    "customTransactionCommentInputPlaceholder": "transaction comment"
+    "customTransactionCommentInputPlaceholder": "transaction comment",
+    "userTransferHeadline": "Select target user"
 }
