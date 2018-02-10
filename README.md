@@ -36,5 +36,6 @@ This will start the initial `npm install` automatically and start a dev webserve
 * [Hackerspace Bremen](https://www.hackerspace-bremen.de/)
 * [Thomann](http://www.thomann.de)
 * [Makerspace Aschaffenburg - Schaffenburg e.V.](https://www.schaffenburg.org)
+* [C3PB e.V.](https://c3pb.de/)
 
 If your hackerspace is missing, just send a mail to schinken@bamberg.ccc.de
