@@ -23,7 +23,9 @@ angular
 
         var userId = $routeParams.userId;
 
-        $scope.enableTransfer = settings.paymentSteps.wireTransfer;
+        $scope.enableDeposit = settings.paymentSteps.enableDeposit;
+        $scope.enableDispense = settings.paymentSteps.enableDispense;
+        $scope.enableTransfer = settings.paymentSteps.enableTransfer;
 
         function loadUser(userId) {
             User
