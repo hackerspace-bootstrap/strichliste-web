@@ -17,3 +17,5 @@ deploy:
     node: "4.4"
     branch: master
     repo: hackerspace-bootstrap/strichliste-web
+
+group: deprecated-2017Q4
