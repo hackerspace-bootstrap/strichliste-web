@@ -14,8 +14,6 @@ deploy:
   file: strichliste-web.tar.gz
   on:
     tags: true
-    node: "4.4"
+    node: "9.3"
     branch: master
     repo: hackerspace-bootstrap/strichliste-web
-
-group: deprecated-2017Q4
