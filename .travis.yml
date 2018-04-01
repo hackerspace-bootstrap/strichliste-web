@@ -1,19 +1,19 @@
 language: node_js
 node_js:
-   - "8.9"
-   - "9.3"
+- '8.9'
+- '9.3'
 addons:
   apt:
     packages:
-      - make
+    - make
 script: make release
 deploy:
   provider: releases
   api_key:
-    secure: X6CtPnWhsVM/1mMMrU0Da45ny/b9uPbW1LeC+6v97LEMH9DGRwnCYe4l7/YIInjIgVFHDhIbalZUze3nQfokDABQ7HatJ9g7mVghTHODT8shavJ00l3amDKCyPelh+kcAGmPayIEqpr+QARkuBLYkTXSOidaqTHBBxbMsOdfRzU=
+    secure: DZOMQARo3q1WvhnHbZs/vt18FuXJK9Fw7ugfTV0JUz1Prr4o2cDpZO+9QzhNOJ+2PrHXg8kSsDEKjS8zRydVx/yJ5Iu+r8dHos+VhUE7uDva22O6ZKSwtkTlWEKq+jZTSKXfTbacI5buKFXtC08fUfZsqNIcaxEMqUkH9lNIS0g=
   file: strichliste-web.tar.gz
   on:
+    repo: hackerspace-bootstrap/strichliste-web
     tags: true
     node: "9.3"
     branch: master
-    repo: hackerspace-bootstrap/strichliste-web
