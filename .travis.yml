@@ -12,6 +12,7 @@ deploy:
   api_key:
     secure: DZOMQARo3q1WvhnHbZs/vt18FuXJK9Fw7ugfTV0JUz1Prr4o2cDpZO+9QzhNOJ+2PrHXg8kSsDEKjS8zRydVx/yJ5Iu+r8dHos+VhUE7uDva22O6ZKSwtkTlWEKq+jZTSKXfTbacI5buKFXtC08fUfZsqNIcaxEMqUkH9lNIS0g=
   file: strichliste-web.tar.gz
+  skip_cleanup: true
   on:
     repo: hackerspace-bootstrap/strichliste-web
     tags: true
