@@ -1,5 +1,9 @@
 # strichliste-web
 
+# DEPRECATED
+strichliste1 has been replaced by strichliste2. See https://github.com/strichliste for the new version!
+
+
 ## demo
 
 Checkout out the [demo](http://demo.strichliste.org/)!
